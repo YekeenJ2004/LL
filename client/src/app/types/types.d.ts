@@ -1,0 +1,1 @@
+type DropdownOptionType = 'month' | 'day' | '7days' | 'custom' | '30days'

@@ -1,0 +1,24 @@
+.container{
+    background-color: var(--bgSoft);
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    width: 100%
+}
+
+.number{
+    display: flex;
+    font-size: 40px;
+    font-weight: 100;
+    flex-direction: row;
+    justify-content: center
+}
+.containertop{
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    flex : auto;
+    justify-content: space-between;
+}

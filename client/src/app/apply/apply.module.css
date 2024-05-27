@@ -1,0 +1,79 @@
+.main{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px; ;
+    border-radius: 10px;
+}
+
+.form{
+    margin-top: 50px;
+    margin-bottom: 50px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--bgSoft);
+    height: 100%;
+}
+
+.button{
+    border-radius: 5px;
+    background-color: var(--bgHard);
+    padding-left: 5px;
+    padding-right: 5px;
+    margin: 5px;
+    border: 1px solid darkgray;
+    padding: 2px;
+}
+
+.button:disabled {
+    background-color: #cccccc; /* Gray */
+    color: #666666;
+    cursor: not-allowed;
+}
+
+.title{
+    font-weight: bold;
+    margin: 20px;
+}
+
+.errormessage{
+    color: red;
+    font-size: 12px;
+}
+
+.field{
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    margin-right: 20px
+}
+
+.inputbox{
+    border-radius: 5px;
+    border: 2px solid var(--bgHard)
+}
+
+.textarea{
+    border-radius: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    height : 150px; 
+    border: 1px solid darkgray;
+    padding: 2px;
+}
+
+.buttombuttons{
+    margin-left: 20px;
+    margin-bottom: 20px;
+    margin-right: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
+

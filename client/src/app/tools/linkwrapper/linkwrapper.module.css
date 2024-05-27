@@ -1,0 +1,40 @@
+.title{
+    font-weight: bold;
+    color: var(--textSoft);
+}
+.container{
+    height: 60vh;
+    width: 100%;
+    background-color: var(--bgSoft);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.firstsection{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.inputbox{
+    border-radius: 5px;
+    border: 2px solid var(--bgHard)
+}
+
+.textarea{
+    border-radius: 5px;
+    height: 80%;
+    width: 100%;
+    border: 2px solid var(--bgHard)
+}
+
+.button{
+    border-radius: 5px;
+    background-color: var(--bgHard);
+    padding-left: 5px;
+    padding-right: 5px;
+    margin: 2px;
+    border: 1px solid darkgray;
+    padding: 2px;
+}

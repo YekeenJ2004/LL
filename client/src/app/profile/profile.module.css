@@ -1,0 +1,47 @@
+.main{
+    display: block;
+    gap: 20px;
+    margin-top:20px;
+    height: 100%;
+}
+
+.wrapper{
+    display: flex;
+}
+
+.title{
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    flex : auto;
+    justify-content: space-between;
+}
+.cards{
+    background-color: var(--bgSoft);
+    margin-top: 20px;
+    margin-right:20px;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    width: 100%
+}
+
+.inputbox{
+    border-radius: 5px;
+    border: 2px solid var(--bgHard);
+    margin-top: 20px;
+}
+
+.errormessage{
+    color: red;
+    font-size: 12px;
+}
+
+@media screen and (max-width: 600px) {
+    .wrapper{
+        display: flex;
+        flex-direction: column;
+    }
+}

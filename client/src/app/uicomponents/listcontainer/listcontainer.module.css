@@ -1,0 +1,38 @@
+.container{
+    background-color: var(--bgSoft);
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    width: 100%
+}
+.smallcontainer{
+    border-radius: 10px;
+    display: flex;
+    gap: 10px;
+    flex-direction: row-reverse;
+    width: 100%;
+    justify-content: center;
+}
+.link{
+    width: 70%;
+}
+.number{
+    display: flex;
+    font-size: 40px;
+    font-weight: 100;
+    flex-direction: row;
+    justify-content: center
+}
+.containertop{
+    display: flex;
+    flex-direction: row-reverse;
+    flex : auto;
+    justify-content: space-between;
+}
+@media screen and (max-width: 992px) {
+    .link{
+        width: 50%;
+    }
+}

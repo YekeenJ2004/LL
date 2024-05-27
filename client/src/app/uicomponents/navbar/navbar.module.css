@@ -1,0 +1,29 @@
+.container{
+    display: flex;
+    padding: 20px;
+    background-color: var(--bgSoft);
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 10px;
+}
+
+.title{
+    color: var(--textSoft);
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.button{
+    color: var(--text);
+    display: flex;
+    flex-direction: row;
+}
+.menu{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.icons{
+    display: flex;
+    gap: 20px;
+}

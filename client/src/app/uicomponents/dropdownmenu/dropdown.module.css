@@ -1,0 +1,25 @@
+.container{
+    display:flex;
+    justify-content: space-between;
+    background-color: var(--bgSoft);
+    border-radius: 10px;
+    padding:5px;
+}
+
+.label{
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    padding: 5px;
+    color: var(--textSoft);
+}
+.select{
+    display: flex;
+    justify-content: center;
+    padding: 4px;
+    -webkit-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: var(--bgHard);
+    border-radius: 10px;
+}

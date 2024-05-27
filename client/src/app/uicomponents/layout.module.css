@@ -1,0 +1,69 @@
+.container{
+    display:flex;
+}
+
+.menu{
+    background-color: var(--bgSoft);
+    padding: 5px;
+    position: fixed;
+    height: 100%
+}
+
+
+.tophalf{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    width: 100%
+}
+.loggedincontent{
+    width: 100%;
+    flex:50;
+    padding: 20px;
+    margin-left: 72px;
+}
+
+.content{
+    width: 100%;
+    flex:50;
+    padding: 20px;
+}
+.wrapper{
+    display: flex;
+    gap: 20px;
+    margin-top:20px;
+}
+
+.main{
+    flex:3;
+    display: flex;
+    flex-direction: column;
+    gap: 20px; 
+    height: 100%;
+}
+
+.cards{
+    display:flex;
+    flex-direction: row;
+    flex:auto;
+    gap:20px;
+}
+
+.smallcards{
+    display: flex;
+    flex-direction: row;
+    flex:auto;
+    gap:20px;
+}
+
+@media screen and (max-width: 600px) {
+    .tophalf{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width:100%
+    }
+}
+
+
+

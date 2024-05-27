@@ -1,0 +1,42 @@
+
+.modaloverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;  /* High z-index to cover other elements */
+}
+
+.modalcontent {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: 20px;
+    background: var(--bgSoft);
+    border-radius: 5px;
+    z-index: 1001;  /* Higher z-index than overlay */
+    max-width: 500px; /* Or any other max-width or width */
+    justify-content: center;
+}
+
+.button{
+    height: 30px;
+    justify-content: center;
+    border-radius: 5px;
+    background-color: var(--bgHard);
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-top: 20px;
+    border: 1px solid darkgray;
+    padding: 2px;
+}
+
+.buttombuttons{
+    display: flex;
+    justify-content: space-between;
+}
