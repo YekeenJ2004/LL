@@ -13,7 +13,7 @@ import { useAuth } from '../authcontext'
 
 const fetchData = async (xcust: String,timeRange: String) =>{
   try{
-    const response = await fetch(`http://192.168.1.184:5000/api/data/dashboardpagedata?xcust=${xcust}&timeRange=${timeRange}`)
+    const response = await fetch(`https://ll-server-yekeen-jimohs-projects.vercel.app/api/data/dashboardpagedata?xcust=${xcust}&timeRange=${timeRange}`, {mode: 'no-cors'})
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }

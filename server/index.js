@@ -121,6 +121,7 @@ app.get('/api/data/dashboardpagedata', async (req, res) => {
     const timeRange = req.query.timeRange
     const xcust = req.query.xcust
     const responseData = await convertToDashboardDataObject(timeRange, xcust) 
+    console.log(responseData)
     res.json(responseData);
 });
 
