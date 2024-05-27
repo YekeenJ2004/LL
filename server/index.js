@@ -11,6 +11,7 @@ import express from 'express';
 import cors from 'cors'
 import { fetchPaymentsFromDB } from "./lib/payments.js"
 import { changePaypal, checkifValidPaypal } from "./lib/changepaypal.js"
+import routes from './routes/index.js';
 const app = express()
 const port = 5000
 
@@ -34,6 +35,11 @@ const corsOptions = {
 
 app.use(cors(corsOptions))
 app.use(express.json());
+app.use('/api', routes);
+
+app.get('/', (req, res) => {
+    res.send('Welcome to the backend!');
+});
 
 app.post('/api/changepaypal', async (req, res) => {
     const {username, paypal} = req.body
