@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styles from  './profile.module.css'
 import CryptoJS from 'crypto-js'
 import Modal from '../uicomponents/modal/modal'
@@ -9,24 +9,38 @@ import Email from './email/email'
 
 
 export default function Profile() {
-  const decryptDataInSessionStorage = () =>{
-    try{
-      const passphrase = 'getThisDough'
-      const encryptedxcust = sessionStorage.getItem('xcust')
-      if (!encryptedxcust) {
-        throw new Error('xcust is not available in sessionStorage');
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [websitelink, setWebsitelink] = useState('');
+
+  useEffect(() => {
+    const decryptDataInSessionStorage = () => {
+      try {
+        const passphrase = 'getThisDough';
+        const encryptedxcust = sessionStorage.getItem('xcust');
+        if (!encryptedxcust) {
+          throw new Error('xcust is not available in sessionStorage');
+        }
+        const xcust = CryptoJS.AES.decrypt(encryptedxcust, passphrase);
+        return xcust.toString(CryptoJS.enc.Utf8);
+      } catch (error) {
+        console.log(error);
+        return '';
       }
-      const xcust  = CryptoJS.AES.decrypt(encryptedxcust, passphrase);
-      return xcust.toString(CryptoJS.enc.Utf8)
-    }catch(error){
-      console.log(error)
-      return ''
+    };
+
+    if (typeof window !== 'undefined') {
+      const decryptedUsername = decryptDataInSessionStorage();
+      setUsername(decryptedUsername);
+      const storedEmail = sessionStorage.getItem('email') || '';
+      setEmail(storedEmail);
+      const storedWebsiteLink = sessionStorage.getItem('websitelink') || ''
+      setWebsitelink(storedWebsiteLink)
     }
-  }
+  }, []);
   
-  const username = decryptDataInSessionStorage()
-  const email  = sessionStorage.getItem('email')
-  const websitelink = 'www.ace.com' //sessionStorage.getItem('websitelink')
+
+
   return (
     <div className={ styles.main}>
       <div  className={ styles.wrapper}>

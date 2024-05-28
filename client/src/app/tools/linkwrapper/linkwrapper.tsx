@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect} from 'react'
 import styles from  './linkwrapper.module.css'
 import CryptoJS from 'crypto-js'
 
@@ -23,9 +23,30 @@ export default function Linkwrapper() {
   const [affiliatedLink, setAffiliatedLink] = useState('')
   const [copied, setCopied] = useState(false)
   const [InputValue, setInputValue] = useState('')
+  const [username, setUsername] = useState('');
 
 
-  const username = decryptDataInSessionStorage()
+  useEffect(() => {
+    const decryptDataInSessionStorage = () => {
+      try {
+        const passphrase = 'getThisDough';
+        const encryptedxcust = sessionStorage.getItem('xcust');
+        if (!encryptedxcust) {
+          throw new Error('xcust is not available in sessionStorage');
+        }
+        const xcust = CryptoJS.AES.decrypt(encryptedxcust, passphrase);
+        return xcust.toString(CryptoJS.enc.Utf8);
+      } catch (error) {
+        console.log(error);
+        return '';
+      }
+    };
+
+    if (typeof window !== 'undefined') {
+      const decryptedUsername = decryptDataInSessionStorage();
+      setUsername(decryptedUsername);
+    }
+  }, []);
 
   const generateLink = () =>{
     if(!userText){
