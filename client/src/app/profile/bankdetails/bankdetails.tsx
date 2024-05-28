@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import Modal from '@/app/uicomponents/modal/modal'
 import styles from '../profile.module.css'
 import CryptoJS from 'crypto-js'
@@ -31,6 +31,15 @@ export default function Email(props: any) {
     const[validNewPaypal, setValidNewPaypal] = useState(true)
     const[newPaypal, setNewPaypal] = useState('')
     const[modalOpen, setModalOpen] = useState(false)
+    const [paypal, setPaypal] = useState<string | null>(null);
+
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+          const storedPaypal = sessionStorage.getItem('paypal');
+          setPaypal(storedPaypal);
+        }
+    }, []);
+
     const toggleModal = () => {
       setModalOpen(!modalOpen);
       setPaypalChanged('')

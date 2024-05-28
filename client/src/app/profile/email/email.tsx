@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import Modal from '@/app/uicomponents/modal/modal'
 import styles from '../profile.module.css'
 import CryptoJS from 'crypto-js'
@@ -9,20 +9,20 @@ const  checkIfValidEmail  = (email: string)  =>{
 }
 
 const decryptDataInSessionStorage = () =>{
-    try{
-      const passphrase = 'getThisDough'
-      const encryptedxcust = sessionStorage.getItem('xcust')
-      if (!encryptedxcust) {
-        throw new Error('xcust is not available in sessionStorage');
-      }
-      const xcust  = CryptoJS.AES.decrypt(encryptedxcust, passphrase);
-      return xcust.toString(CryptoJS.enc.Utf8)
-    }catch(error){
-      console.log(error)
-      return ''
+  try{
+    const passphrase = 'getThisDough'
+    const encryptedxcust = sessionStorage.getItem('xcust')
+    if (!encryptedxcust) {
+      throw new Error('xcust is not available in sessionStorage');
     }
+    const xcust  = CryptoJS.AES.decrypt(encryptedxcust, passphrase);
+    return xcust.toString(CryptoJS.enc.Utf8)
+  }catch(error){
+    console.log(error)
+    return ''
   }
-  
+}
+
 
 export default function Email(props: any) {
     const[emailChanged, setEmailChanged] = useState('')
@@ -31,13 +31,21 @@ export default function Email(props: any) {
     const[validNewEmail, setValidNewEmail] = useState(true)
     const[newEmail, setNewEmail] = useState('')
     const[modalOpen, setModalOpen] = useState(false)
-    const email  = sessionStorage.getItem('email')
+    const [email, setEmail] = useState<string | null>(null);
+
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+          const email = sessionStorage.getItem('email');
+          setEmail(email);
+        }
+      }, []);
     const toggleModal = () => {
       setModalOpen(!modalOpen);
       setEmailChanged('')
       setValidCurrentEmail(true)
     };
     
+
     const changeEmail = async (email: string) =>{
         try{
             const response = await fetch(`https://ll-server-yekeen-jimohs-projects.vercel.app/api/changeemail`,{
