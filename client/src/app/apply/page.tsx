@@ -28,7 +28,7 @@ export default function Apply() {
   const [savedUser, setSavedUser] = useState(true)
 
   let validForm = isValidPassword && isValidemail && convertToBool(websiteLink) && convertToBool(username) && isValidPaypal && convertToBool(response)
-  const handleSubmit = (event) => {
+  const handleSubmit = (event : React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     // Assuming 'onLogin' is a function passed via props that handles the actual authentication logic
     onApply(email, password);

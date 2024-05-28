@@ -23,7 +23,7 @@ export default function Login() {
   const [isValid, setisValid] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     // Assuming 'onLogin' is a function passed via props that handles the actual authentication logic
     setIsLoading(true)

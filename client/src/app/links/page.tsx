@@ -15,7 +15,7 @@ import Loading from '../uicomponents/loadingspinner/loadingspinner'
 //   'https://www.iceland.co.uk/p/mr-naga-hot-pepper-pickle-190g/95409.html': [[0.35, 1.00, 49.59], 'https://www.iceland.co.uk/p/mr-naga-hot-pepper-pickle-190g/95409.html'],
 // }
 
-const fetchData = async (xcust: String,timeRange: String) =>{
+const fetchData = async (xcust: string,timeRange: string) =>{
   try{
     const response = await fetch(`https://ll-server-yekeen-jimohs-projects.vercel.app/api/data/linkspagedata?xcust=${xcust}&timeRange=${timeRange}`)
     if (!response.ok) {
