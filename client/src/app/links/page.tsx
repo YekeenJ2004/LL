@@ -29,11 +29,20 @@ const fetchData = async (xcust: string,timeRange: string) =>{
   }
 }
 const decryptDataInSessionStorage = () =>{
-  const passphrase = 'getThisDough'
-  const encryptedxcust = sessionStorage.getItem('xcust')
-  const xcust  = CryptoJS.AES.decrypt(encryptedxcust, passphrase);
-  return xcust.toString(CryptoJS.enc.Utf8)
+  try{
+    const passphrase = 'getThisDough'
+    const encryptedxcust = sessionStorage.getItem('xcust')
+    if (!encryptedxcust) {
+      throw new Error('xcust is not available in sessionStorage');
+    }
+    const xcust  = CryptoJS.AES.decrypt(encryptedxcust, passphrase);
+    return xcust.toString(CryptoJS.enc.Utf8)
+  }catch(error){
+    console.log(error)
+    return ''
+  }
 }
+
 
 export default function Links() {
   const {isLoggedIn} = useAuth()

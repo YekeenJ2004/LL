@@ -82,25 +82,25 @@ export default function Apply() {
     })(email)
   },[setEmail, email])
 
-  const onChangePassword = (e) =>{
+  const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) =>{
     const pass = e.target.value
     setPassword(pass)
     setisValidPassword(isStrongPassword(pass))
   }
 
-  const onChangePaypal = (e) =>{
+  const onChangePaypal = (e: React.ChangeEvent<HTMLInputElement>) =>{
     const pay =e.target.value
     setPaypal(pay)
     setisValidPaypal(checkIfValidEmail(pay))
   }
 
-  const onChangeEmail = (e)=>{
+  const onChangeEmail = (e: React.ChangeEvent<HTMLInputElement>)=>{
     const mail = e.target.value
     setEmail(mail)
     setisValidEmail(checkIfValidEmail(mail))
   }
    
-  const onChangeUsername = async (e) =>{
+  const onChangeUsername = async (e: React.ChangeEvent<HTMLInputElement>) =>{
     setUsername(e.target.value)
   }
 

@@ -1,7 +1,14 @@
-import React from 'react'
+import React ,{ReactNode}from 'react'
 import styles from './modal.module.css'
 
-export default function Modal({ isOpen, onClose, buttonName, onClickButton, children}) {
+interface ModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  buttonName: string[];
+  onClickButton: ((event: React.MouseEvent<HTMLButtonElement>) => void)[];
+  children: ReactNode;
+}
+export default function Modal({ isOpen, onClose, buttonName, onClickButton, children}: ModalProps) {
   if (!isOpen) {
       return null;
     }

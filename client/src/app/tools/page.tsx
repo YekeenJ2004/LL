@@ -3,7 +3,7 @@ import React from 'react'
 import styles from  './tools.module.css'
 import LinkWrapper from './linkwrapper/linkwrapper'
 import DropdownMenu from '../uicomponents/dropdownmenu/dropdownmenu'
-import { fetchCommissions } from '../lib/data'
+
 import Discordbot from './discordbot/discordbot'
 
 

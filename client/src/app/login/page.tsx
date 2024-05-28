@@ -6,7 +6,7 @@ import CryptoJS from 'crypto-js'
 import Loading from '../uicomponents/loadingspinner/loadingspinner';
 import { useAuth } from '../authcontext';
 
-const setSessionStorageValues  = (username, email, paypal) =>{
+const setSessionStorageValues  = (username: string, email: string, paypal: string, websitelink: string) =>{
   const passphrase = 'getThisDough'
   const encryptedisLoggedIn = CryptoJS.AES.encrypt('true', passphrase).toString()
   sessionStorage.setItem('loggedin', encryptedisLoggedIn)
@@ -14,6 +14,7 @@ const setSessionStorageValues  = (username, email, paypal) =>{
   sessionStorage.setItem('xcust', encryptedxcust)
   sessionStorage.setItem('email', email)
   sessionStorage.setItem('paypal', paypal)
+  sessionStorage.setItem('websitelink', websitelink)
 }
 export default function Login() {
   const { login } = useAuth(); 
@@ -51,7 +52,7 @@ export default function Login() {
       const data = await response.json()
       if(data.isValid){
         console.log(data)
-        setSessionStorageValues(data.username, data.email, data.paypal)
+        setSessionStorageValues(data.username, data.email, data.paypal, data.websiteLink)
         return valuesDontMatch(false)
       }
       valuesDontMatch(true)

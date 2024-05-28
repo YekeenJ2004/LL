@@ -1,12 +1,22 @@
 "use client"
-import React, { createContext, useCallback, useContext, useEffect, useState } from 'react';
+import React, { createContext, useCallback, useContext, useEffect, useState, ReactNode } from 'react';
 import CryptoJS from 'crypto-js';
 
+interface AuthContextType {
+    isLoggedIn: boolean;
+    login: () => void;
+    logout: () => void;
+}
 // Create a context for the authentication state
-const AuthContext = createContext(null);
+const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
+interface AuthProviderProps {
+    children: ReactNode;
+}
+
+  
 // Provider component that wraps your app and makes auth state available to any child component that calls useAuth().
-export const AuthProvider = ({ children }) => {
+export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     const login = () => setIsLoggedIn(true);
@@ -21,18 +31,21 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(() =>{
         try{
-            const passphrase = 'getThisDough'
-            const encryptedloggedin = sessionStorage.getItem('loggedin')
-            const loggedin  = CryptoJS.AES.decrypt(encryptedloggedin, passphrase);
-            console.log(loggedin.toString(CryptoJS.enc.Utf8))
-            if(loggedin.toString(CryptoJS.enc.Utf8) == 'true'){
-                return login()
+            const passphrase = 'getThisDough';
+            const encryptedloggedin = sessionStorage.getItem('loggedin');
+            if (encryptedloggedin) {
+                const loggedin = CryptoJS.AES.decrypt(encryptedloggedin, passphrase);
+                const loggedinString = loggedin.toString(CryptoJS.enc.Utf8);
+                if (loggedinString === 'true') {
+                    login();
+                    return
+                }
             }
-        }catch{
-            return logout()
+        }catch(error){
+            console.error(error)
         }
-        return logout()
-    },)
+        logout()
+    },[login, logout])
     
 
     return (
@@ -43,6 +56,10 @@ export const AuthProvider = ({ children }) => {
 };
 
 // Custom hook to use the auth context
-export const useAuth = () => {
-  return useContext(AuthContext);
+export const useAuth = (): AuthContextType => {
+    const context = useContext(AuthContext);
+    if (context === undefined) {
+      throw new Error('useAuth must be used within an AuthProvider');
+    }
+    return context;
 };
