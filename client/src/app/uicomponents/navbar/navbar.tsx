@@ -2,9 +2,7 @@
 import React from 'react'
 import styles from './navbar.module.css'
 import { usePathname } from 'next/navigation'
-import { RiUser6Fill, RiSettings4Fill,} from 'react-icons/ri'
-import { MdLogin, MdLogout, MdOutlineDateRange } from 'react-icons/md'
-import { useUser } from '@auth0/nextjs-auth0/client'
+import { MdLogin, MdLogout} from 'react-icons/md'
 import { useAuth } from '@/app/authcontext'
 import Link from 'next/link'
 
