@@ -28,7 +28,7 @@ export default function Profile() {
         return '';
       }
     };
-
+    
     if (typeof window !== 'undefined') {
       const decryptedUsername = decryptDataInSessionStorage();
       setUsername(decryptedUsername);
