@@ -2,23 +2,23 @@ import React, { useState } from 'react'
 import styles from  './linkwrapper.module.css'
 import CryptoJS from 'crypto-js'
 
-const decryptDataInSessionStorage = () =>{
-  try{
-    const passphrase = 'getThisDough'
-    const encryptedxcust = sessionStorage.getItem('xcust')
-    if (!encryptedxcust) {
-      throw new Error('xcust is not available in sessionStorage');
-    }
-    const xcust  = CryptoJS.AES.decrypt(encryptedxcust, passphrase);
-    return xcust.toString(CryptoJS.enc.Utf8)
-  }catch(error){
-    console.log(error)
-    return ''
-  }
-}
 
 export default function Linkwrapper() {
-
+  const decryptDataInSessionStorage = () =>{
+    try{
+      const passphrase = 'getThisDough'
+      const encryptedxcust = sessionStorage.getItem('xcust')
+      if (!encryptedxcust) {
+        throw new Error('xcust is not available in sessionStorage');
+      }
+      const xcust  = CryptoJS.AES.decrypt(encryptedxcust, passphrase);
+      return xcust.toString(CryptoJS.enc.Utf8)
+    }catch(error){
+      console.log(error)
+      return ''
+    }
+  }
+  
   const [userText, setUserText] = useState('')
   const [affiliatedLink, setAffiliatedLink] = useState('')
   const [copied, setCopied] = useState(false)
