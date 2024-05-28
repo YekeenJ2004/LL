@@ -18,14 +18,23 @@ export default function RootLayout({
 }>) {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   useEffect(()=>{
-    const passphrase = 'getThisDough'
-    const encryptedloggedin = sessionStorage.getItem('loggedin')
-    const loggedin  = CryptoJS.AES.decrypt(encryptedloggedin, passphrase)
-    if(loggedin.toString(CryptoJS.enc.Utf8) == 'true'){
-      return setIsLoggedIn(true)
+    const passphrase = 'getThisDough';
+    const encryptedloggedin = sessionStorage.getItem('loggedin');
+
+    if (encryptedloggedin) {
+      try {
+        const loggedin = CryptoJS.AES.decrypt(encryptedloggedin, passphrase);
+        const loggedinString = loggedin.toString(CryptoJS.enc.Utf8);
+        if (loggedinString === 'true') {
+          setIsLoggedIn(true);
+          return;
+        }
+      } catch (error) {
+        console.error('Failed to decrypt session storage value:', error);
+      }
     }
-    return setIsLoggedIn(false)
-  },[])
+    setIsLoggedIn(false);
+  }, [])
   return (
     <AuthProvider>
       <html lang="en">
