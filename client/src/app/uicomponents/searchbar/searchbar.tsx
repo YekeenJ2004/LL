@@ -1,12 +1,17 @@
 import React, { useState } from 'react'
 import styles from './searchbar.module.css'
 
-export default function Searchbar({setSearchTerm}) {
+interface SearchbarProps {
+  setSearchTerm: (term: string) => void;
+}
+
+const Searchbar: React.FC<SearchbarProps> = ({ setSearchTerm }) => {
+
   const [input, setInput] = useState('')
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);  // Update the state with the input
   };
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();  // Prevent the form from refreshing the page
   };
   const handleSearch = () =>{
@@ -23,3 +28,4 @@ export default function Searchbar({setSearchTerm}) {
 }
 
 
+export default Searchbar;
