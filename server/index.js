@@ -20,7 +20,7 @@ const port = 5000
 const findUserFromEmail = async (email) =>{
     const user = await User.findOne({email : email}) 
     const paypal = user.paypal.slice(0,3)
-    return([user.username, paypal])
+    return([user.username, paypal, user.websiteLink])
 }
 
 
@@ -97,8 +97,8 @@ app.post('/api/login', async (req, res) => {
     const { email, password} = req.body
     const matchingCredentials  = await authenticateUser(email, password)
     if(matchingCredentials){
-        const [username, paypal] = await findUserFromEmail(email)
-        return res.json({isValid: true, username: username, email: email, paypal : paypal})
+        const [username, paypal, websitelink] = await findUserFromEmail(email)
+        return res.json({isValid: true, username: username, email: email, paypal : paypal, websiteLink : websitelink})
     }
     return res.json({isValid: false});
 });
