@@ -5,9 +5,9 @@ import styles from  '../uicomponents/layout.module.css'
 import ListContainer from '../uicomponents/listcontainer/listcontainer'
 import Loading from '../uicomponents/loadingspinner/loadingspinner'
 
-const fetchData = async (searchterm: String) =>{
+const fetchData = async (searchterm: string) =>{
   try{
-    const response = await fetch(`http://192.168.1.184:5000/api/data/merchantofferspagedata?searchterm=${searchterm}`)
+    const response = await fetch(`https://ll-server-yekeen-jimohs-projects.vercel.app/api/data/merchantofferspagedata?searchterm=${searchterm}`)
     if (!response.ok) {
       console.log('failed')
       throw new Error(`HTTP error! status: ${response.status}`);

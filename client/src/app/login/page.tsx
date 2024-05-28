@@ -40,10 +40,10 @@ export default function Login() {
     window.location.replace('http://192.168.1.184:3000/dashboard')
     login()
   }
-  const onLogin = async (email : String , password : String) =>{
+  const onLogin = async (email : string , password : string) =>{
     
     try{
-      const response = await fetch(`http://192.168.1.184:5000/api/login`,{
+      const response = await fetch(`https://ll-server-yekeen-jimohs-projects.vercel.app/api/login`,{
         method : 'POST',
         headers: {'Content-Type' : 'application/json'},
         body: JSON.stringify({email, password})

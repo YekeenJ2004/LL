@@ -6,7 +6,7 @@ import {isStrongPassword}from '../utils'
 import { convertToBool } from '../utils';
 
 
-const  checkIfValidEmail  = (email: String)  =>{
+const  checkIfValidEmail  = (email: string)  =>{
   const regexPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return regexPattern.test(email);
 }
@@ -36,7 +36,7 @@ export default function Apply() {
 
   const onApply = async (email : String , password : String) =>{
     try{
-      const response = await fetch(`http://192.168.1.184:5000/api/apply`,{
+      const response = await fetch(`https://ll-server-yekeen-jimohs-projects.vercel.app/api/apply`,{
         method : 'POST',
         headers: {'Content-Type' : 'application/json'},
         body: JSON.stringify({email,username,password, paypal, websiteLink})
@@ -51,7 +51,7 @@ export default function Apply() {
   useEffect(()=>{
     (async (username : String) =>{
       try{
-        const response = await fetch(`http://192.168.1.184:5000/api/checkusername`,{
+        const response = await fetch(`https://ll-server-yekeen-jimohs-projects.vercel.app/api/checkusername`,{
           method : 'POST',
           headers: {'Content-Type' : 'application/json'},
           body: JSON.stringify({username : username})
@@ -68,7 +68,7 @@ export default function Apply() {
   useEffect(()=>{
     (async (email : String) =>{
       try{
-        const response = await fetch(`http://192.168.1.184:5000/api/checkemail`,{
+        const response = await fetch(`https://ll-server-yekeen-jimohs-projects.vercel.app/api/checkemail`,{
           method : 'POST',
           headers: {'Content-Type' : 'application/json'},
           body: JSON.stringify({email : email})

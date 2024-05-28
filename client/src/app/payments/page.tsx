@@ -25,7 +25,7 @@ const fetchData = async() =>{
     try{
         const xcust = decryptDataInSessionStorage()
         console.log(xcust)
-        const response = await fetch(`http://192.168.1.184:5000/api/data/payments?xcust=${xcust}`)
+        const response = await fetch(`https://ll-server-yekeen-jimohs-projects.vercel.app/api/data/payments?xcust=${xcust}`)
         if (!response.ok) {
           console.log('failed')
           throw new Error(`HTTP error! status: ${response.status}`);

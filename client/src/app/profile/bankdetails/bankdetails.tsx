@@ -3,7 +3,7 @@ import Modal from '@/app/uicomponents/modal/modal'
 import styles from '../profile.module.css'
 import CryptoJS from 'crypto-js'
 
-const  checkIfValidEmail  = (email: String)  =>{
+const  checkIfValidEmail  = (email: string)  =>{
     const regexPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return regexPattern.test(email);
 }
@@ -34,7 +34,7 @@ export default function Email(props: any) {
     
     const changePaypal = async (paypal: string) =>{
         try{
-            const response = await fetch(`http://192.168.1.184:5000/api/changepaypal`,{
+            const response = await fetch(`https://ll-server-yekeen-jimohs-projects.vercel.app/api/changepaypal`,{
               method : 'POST',
               headers: {'Content-Type' : 'application/json'},
               body: JSON.stringify({username: decryptDataInSessionStorage(),paypal:paypal})

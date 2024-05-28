@@ -9,9 +9,9 @@ import CryptoJS from 'crypto-js'
 import Loading from '../uicomponents/loadingspinner/loadingspinner'
 
 
-const fetchData = async (xcust: String,timeRange: String) =>{
+const fetchData = async (xcust: string,timeRange: string) =>{
   try{
-    const response = await fetch(`http://192.168.1.184:5000/api/data/merchantpagedata?xcust=${xcust}&timeRange=${timeRange}`)
+    const response = await fetch(`https://ll-server-yekeen-jimohs-projects.vercel.app/api/data/merchantpagedata?xcust=${xcust}&timeRange=${timeRange}`)
     if (!response.ok) {
       console.log('failed')
       throw new Error(`HTTP error! status: ${response.status}`);

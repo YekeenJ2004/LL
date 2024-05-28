@@ -11,9 +11,9 @@ import Loading from '../uicomponents/loadingspinner/loadingspinner'
 import { useAuth } from '../authcontext'
 
 
-const fetchData = async (xcust: String,timeRange: String) =>{
+const fetchData = async (xcust: string,timeRange: string) =>{
   try{
-    const response = await fetch(`https://ll-server-yekeen-jimohs-projects.vercel.app/api/data/dashboardpagedata?xcust=${xcust}&timeRange=${timeRange}`, {mode: 'no-cors'})
+    const response = await fetch(`https://ll-server-yekeen-jimohs-projects.vercel.app/api/data/dashboardpagedata?xcust=${xcust}&timeRange=${timeRange}`)
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
