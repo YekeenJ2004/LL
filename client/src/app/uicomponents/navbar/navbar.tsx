@@ -11,7 +11,7 @@ export default function Navbar() {
     const {logout, isLoggedIn} = useAuth()
     const onLogout = () =>{
         logout()
-        window.location.replace('http://192.168.1.184:3000/login')
+        window.location.replace('https://ll-client.vercel.app/login')
     }
     return(
         <div className={styles.container}>
@@ -20,7 +20,7 @@ export default function Navbar() {
             </button>
             <div className={styles.menu}>
                 <div className = {styles.icons}>
-                    {isLoggedIn ? <button onClick={onLogout}><MdLogout/></button> : <Link href={'http://192.168.1.184:3000/login'}><button><MdLogin></MdLogin></button></Link>}
+                    {isLoggedIn ? <button onClick={onLogout}><MdLogout/></button> : <Link href={'https://ll-client.vercel.app/login'}><button><MdLogin></MdLogin></button></Link>}
                 </div> 
             </div>
         </div>

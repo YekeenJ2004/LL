@@ -38,13 +38,13 @@ export default function Login() {
       setisValid(false)
       return 
     }
-    window.location.replace('http://192.168.1.184:3000/dashboard')
+    window.location.replace('https://ll-client.vercel.app/dashboard')
     login()
   }
   const onLogin = async (email : string , password : string) =>{
     
     try{
-      const response = await fetch(`https://ll-server-yekeen-jimohs-projects.vercel.app/api/login`,{
+      const response = await fetch(`https://ll-client.vercel.app/api/login`,{
         method : 'POST',
         headers: {'Content-Type' : 'application/json'},
         body: JSON.stringify({email, password})
