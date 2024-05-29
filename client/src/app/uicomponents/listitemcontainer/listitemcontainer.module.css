@@ -54,6 +54,7 @@
         align-items: center;
         padding: 10px;
         overflow-x: hidden; /* Prevent horizontal overflow */
+        width: 100%;
     }
 
     .container .smallcontainer {
