@@ -33,9 +33,9 @@ async function getCommissionsFromSkimlinks(start_date, end_date, status) {
     offset += limit;
     has_next = responseCommissions.pagination.has_next;
     if(status == 'active'){
-      saveCommissionsToDB(list)
+      await saveCommissionsToDB(list)
     }else if(status =='cancelled'){
-      updateCancelledCommisssions(list)
+      await updateCancelledCommisssions(list)
     }
     console.log(has_next)
     console.log(offset)
@@ -45,8 +45,8 @@ async function getCommissionsFromSkimlinks(start_date, end_date, status) {
 const updateCancelledCommisssions =async(comms) =>{
   for (const comm of comms) {
     try{
-      connectToDB()
-      Commission.findOneAndUpdate(
+      await connectToDB()
+      await Commission.findOneAndUpdate(
         {commission_id : comm.commission_id },
         {status: 'cancelled'}
       )
@@ -61,7 +61,7 @@ const updateCancelledCommisssions =async(comms) =>{
 
 const saveCommissionsToDB = async(comms) =>{
   //const comms  =  await getCommissionsFromSkimlinks('2024-01-01', '2024-04-15')
-  connectToDB()
+  await connectToDB()
   for (const comm of comms) {
     try{
       const newCommisison = new Commission(
@@ -114,7 +114,7 @@ async function getMerchantOffers() {
 }
 
 const saveMerchantOffersToDB  = async(offers) =>{
-  connectToDB()
+  await connectToDB()
   for (const offer of offers) {
     try{
       const newMerchantOffer = new MerchantOffers(
@@ -134,6 +134,7 @@ const saveMerchantOffersToDB  = async(offers) =>{
 }
 
 //getMerchantOffers()
-getCommissionsFromSkimlinks('2024-05-16', '2024-05-26', 'cancelled')
+//getCommissionsFromSkimlinks('2024-01-01', '2024-05-28', 'cancelled')
+getCommissionsFromSkimlinks('2024-05-25', '2024-05-28', 'active')
 
 console.log('go')

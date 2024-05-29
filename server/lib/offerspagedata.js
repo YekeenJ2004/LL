@@ -7,7 +7,7 @@ export const getMerchantOffersFromDB = async(searchTerm) =>{
         safeSearchTerm = 'nike'
     }
     try{
-        connectToDB()
+        await connectToDB()
         const offers = await MerchantOffers.find({ 
           merchant_name: {$regex : safeSearchTerm, $options: 'i'},
           average_commission_rate : {$ne : null}

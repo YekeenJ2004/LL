@@ -9,7 +9,7 @@ export async function saveNewUserTODatabase( email, username, password, paypal, 
         }
     }
     try{
-        connectToDB()
+        await connectToDB()
         const hashedPassword = await bcrypt.hash(password, 10);
         const user = new User(
             {
@@ -21,7 +21,7 @@ export async function saveNewUserTODatabase( email, username, password, paypal, 
                 active : false
             }
         )
-        const saveduser = user.save()
+        const saveduser = await user.save()
     }catch(err){
         console.log('could not add user to database', err)
         return false
@@ -30,7 +30,7 @@ export async function saveNewUserTODatabase( email, username, password, paypal, 
 
 export const checkIfUserExists = async (username) =>{
     try{
-        connectToDB()
+        await connectToDB()
         const userExists = await User.findOne({username : username})
         console.log(userExists)
         if(userExists) {
@@ -44,7 +44,7 @@ export const checkIfUserExists = async (username) =>{
 
 export const checkIfEmailExists = async (email) =>{
     try{
-        connectToDB()
+        await connectToDB()
         const emailExists = await User.findOne({email : email})
         if(emailExists) {
             return true
