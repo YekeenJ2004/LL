@@ -181,7 +181,7 @@ export default function Apply() {
         </div>
         <div className={styles.buttombuttons}>
           <button type = "submit" className={styles.button} onClick={handleSubmit} disabled = {!validForm}>Apply now</button>
-          <Link href='http://192.168.1.184:3000/login' >
+          <Link href='https://ll-client.vercel.app/login' >
             <button className={styles.button}>Login</button>
           </Link>
         </div>
