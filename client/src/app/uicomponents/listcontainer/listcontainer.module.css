@@ -1,13 +1,21 @@
-.container{
+/* Ensure box-sizing is border-box for all elements */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+.container {
     background-color: var(--bgSoft);
     padding: 20px;
     border-radius: 10px;
     display: flex;
     gap: 10px;
     flex-direction: column;
-    width: 100%
+    width: 100%;
 }
-.smallcontainer{
+
+.smallcontainer {
     border-radius: 10px;
     display: flex;
     gap: 10px;
@@ -15,24 +23,42 @@
     width: 100%;
     justify-content: center;
 }
-.link{
+
+.link {
     width: 70%;
 }
-.number{
+
+.number {
     display: flex;
-    font-size: 40px;
+    font-size: 2.5rem; /* Changed from 40px to 2.5rem */
     font-weight: 100;
     flex-direction: row;
-    justify-content: center
+    justify-content: center;
 }
-.containertop{
+
+.containertop {
     display: flex;
     flex-direction: row-reverse;
-    flex : auto;
+    flex: auto;
     justify-content: space-between;
 }
+
 @media screen and (max-width: 992px) {
-    .link{
-        width: 50%;
+    .container {
+        padding: 10px; /* Adjust padding for small screens */
+    }
+    .smallcontainer {
+        flex-direction: column; /* Adjust layout for small screens */
+    }
+    .link {
+        width: 100%; /* Adjust width for small screens */
+    }
+    .number {
+        font-size: 2rem; /* Adjust font size for small screens */
+    }
+    .containertop {
+        flex-direction: column; /* Adjust layout for small screens */
+        justify-content: center;
+        align-items: center;
     }
 }
