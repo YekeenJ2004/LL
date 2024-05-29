@@ -3,16 +3,17 @@ import styles from './dropdown.module.css'
 
 // Step 1: Create a context to share the dropdown state
 
+
 interface DropdownMenuProps {
   sendTimeRange: (timeRange: DropdownOptionType) => void;
 }
 
-
-const DropdownMenu: React.FC<DropdownMenuProps> = ({sendTimeRange})=> {
+const DropdownMenu:  React.FC<DropdownMenuProps>  = ({sendTimeRange})=> {
 
   const [timeRange, setTimeRange] =  useState<DropdownOptionType>('month')
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setTimeRange(event.target.value as DropdownOptionType);
+    const value = event.target.value as DropdownOptionType;
+    setTimeRange(value);
   };
   useEffect(() =>{
     sendTimeRange(timeRange)
@@ -24,7 +25,7 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({sendTimeRange})=> {
           className={styles.select}
           id="dropdown"
           value={timeRange}
-          onChange={(e) => handleSelectChange}
+          onChange={handleSelectChange}
         >
           <option value = 'month'>Month</option>
           <option value="7days">7 Days</option>
