@@ -1,4 +1,11 @@
-.container{
+/* Ensure box-sizing is border-box for all elements */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+.container {
     font-weight: bold;
     padding: 10px;
     border-radius: 10px;
@@ -9,25 +16,48 @@
     justify-content: space-between;
 }
 
-.smallcontainer{
+.smallcontainer {
     border-radius: 10px;
     display: flex;
     gap: 10px;
     flex-direction: row-reverse;
     justify-content: center;
-    width: 150px
+    width: 100%; /* Use a percentage width */
+    max-width: 150px; /* Ensure it doesn't get too wide */
 }
 
-.number{
+.number {
     display: flex;
-    font-size: 40px;
+    font-size: 2.5rem; /* Use relative units */
     font-weight: 100;
     flex-direction: row;
     justify-content: center;
 }
 
-.containertop{
+.containertop {
     display: flex;
     flex-direction: row-reverse;
-    flex : auto;
+    flex: auto;
+}
+
+@media screen and (max-width: 992px) {
+    .container {
+        flex-direction: column; /* Stack items vertically on smaller screens */
+        align-items: center;
+    }
+
+    .smallcontainer {
+        width: 100%; /* Ensure it uses the full width on smaller screens */
+        max-width: 100%; /* Remove the fixed max-width */
+        flex-direction: column; /* Adjust layout for smaller screens */
+    }
+
+    .number {
+        font-size: 2rem; /* Adjust font size for smaller screens */
+    }
+
+    .containertop {
+        flex-direction: column; /* Adjust layout for smaller screens */
+        align-items: center;
+    }
 }
