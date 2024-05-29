@@ -11,6 +11,8 @@
     gap: 10px;
     flex-direction: column;
     width: 100%;
+    max-width: 100%; /* Ensure it doesn't exceed the viewport width */
+    overflow: hidden; /* Prevents overflow */
 }
 
 .smallcontainer {
@@ -19,11 +21,13 @@
     gap: 10px;
     flex-direction: row-reverse;
     width: 100%;
+    max-width: 100%; /* Ensure it doesn't exceed the viewport width */
     justify-content: center;
 }
 
 .link {
     width: 70%;
+    max-width: 100%; /* Ensure it doesn't exceed the viewport width */
 }
 
 .number {
@@ -32,6 +36,7 @@
     font-weight: 100;
     flex-direction: row;
     justify-content: center;
+    word-wrap: break-word; /* Ensure long text wraps */
 }
 
 .containertop {
@@ -39,24 +44,30 @@
     flex-direction: row-reverse;
     flex: auto;
     justify-content: space-between;
+    max-width: 100%; /* Ensure it doesn't exceed the viewport width */
 }
 
 @media screen and (max-width: 992px) {
     .container {
         padding: 10px; /* Adjust padding for small screens */
+        overflow: hidden; /* Prevents overflow */
     }
     .smallcontainer {
         flex-direction: column; /* Adjust layout for small screens */
+        overflow: hidden; /* Prevents overflow */
     }
     .link {
         width: 100%; /* Adjust width for small screens */
+        max-width: 100%; /* Ensure it doesn't exceed the viewport width */
     }
     .number {
         font-size: 2rem; /* Adjust font size for small screens */
+        overflow: hidden; /* Prevents overflow */
     }
     .containertop {
         flex-direction: column; /* Adjust layout for small screens */
         justify-content: center;
         align-items: center;
+        overflow: hidden; /* Prevents overflow */
     }
 }
