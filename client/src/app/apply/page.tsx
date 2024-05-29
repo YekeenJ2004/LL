@@ -42,7 +42,7 @@ export default function Apply() {
         body: JSON.stringify({email,username,password, paypal, websiteLink})
       })
       const data = await response.json()
-      setSavedUser(JSON.parse(data.saved))
+      setSavedUser(data.saved)
     }catch(err){
       console.log(err)
     }
@@ -104,14 +104,14 @@ export default function Apply() {
     setUsername(e.target.value)
   }
 
-  if(!savedUser){
+  if(applied && !savedUser){
     return(
       <div className= {styles.main}>
-        Thank you for applying 
+        Could not apply
       </div>
     )
   }
-  if(applied){
+  if(applied && savedUser){
     return(
       <div className= {styles.main}>
         Thank you for applying 
