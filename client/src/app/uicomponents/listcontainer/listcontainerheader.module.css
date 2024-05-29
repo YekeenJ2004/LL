@@ -45,9 +45,10 @@
     }
 
     .smallcontainer {
-        width: 100%; /* Ensure it uses the full width on smaller screens */
-        max-width: 100%; /* Remove the fixed max-width */
-        flex-direction: column; /* Adjust layout for smaller screens */
+        width: 1px
+        /* width: 100%; /* Ensure it uses the full width on smaller screens */
+        /* max-width: 100%; Remove the fixed max-width */
+        /* flex-direction: column; Adjust layout for smaller screens */ 
     }
 
     .number {
