@@ -23,3 +23,6 @@
     background-color: var(--bgHard);
     border-radius: 10px;
 }
+.option{
+    align-items: center;
+}
