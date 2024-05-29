@@ -1,7 +1,5 @@
 /* Ensure box-sizing is border-box for all elements */
-*,
-*::before,
-*::after {
+.container, .container *::before, .container *::after {
     box-sizing: border-box;
 }
 
