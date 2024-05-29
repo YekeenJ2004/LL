@@ -12,7 +12,7 @@
     flex-direction: column;
     width: 100%;
     max-width: 100%; /* Ensure it doesn't exceed the viewport width */
-    overflow: hidden; /* Prevents overflow */
+    overflow-x: hidden; /* Prevent horizontal overflow */
 }
 
 .smallcontainer {
@@ -21,8 +21,8 @@
     gap: 10px;
     flex-direction: row-reverse;
     width: 100%;
-    max-width: 100%; /* Ensure it doesn't exceed the viewport width */
     justify-content: center;
+    max-width: 100%; /* Ensure it doesn't exceed the viewport width */
 }
 
 .link {
@@ -50,11 +50,15 @@
 @media screen and (max-width: 760px) {
     .container {
         padding: 10px; /* Adjust padding for small screens */
-        overflow: hidden; /* Prevents overflow */
+        flex-direction: column; /* Stack items vertically on smaller screens */
+        align-items: center;
+        overflow-x: hidden; /* Prevent horizontal overflow */
     }
     .smallcontainer {
         flex-direction: column; /* Adjust layout for small screens */
-        overflow: hidden; /* Prevents overflow */
+        width: 100%; /* Ensure it uses the full width on smaller screens */
+        max-width: 100%; /* Remove the fixed max-width */
+        overflow-x: hidden; /* Prevent horizontal overflow */
     }
     .link {
         width: 100%; /* Adjust width for small screens */
@@ -62,12 +66,13 @@
     }
     .number {
         font-size: 2rem; /* Adjust font size for small screens */
-        overflow: hidden; /* Prevents overflow */
+        word-wrap: break-word; /* Ensure long text wraps */
+        overflow-x: hidden; /* Prevent horizontal overflow */
     }
     .containertop {
         flex-direction: column; /* Adjust layout for small screens */
-        justify-content: center;
         align-items: center;
-        overflow: hidden; /* Prevents overflow */
+        justify-content: center;
+        overflow-x: hidden; /* Prevent horizontal overflow */
     }
 }
