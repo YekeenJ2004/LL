@@ -4,6 +4,7 @@
     background-color: var(--bgSoft);
     border-radius: 10px;
     padding:5px;
+    align-items: center;
 }
 
 .label{
@@ -11,6 +12,7 @@
     justify-content: center;
     font-weight: bold;
     padding: 5px;
+    align-items: center;
     color: var(--textSoft);
 }
 .select{
