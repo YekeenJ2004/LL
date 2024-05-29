@@ -1,5 +1,12 @@
-.container{
-    background-color:  white;
+/* Ensure box-sizing is border-box for all elements */
+.container,
+.container *::before,
+.container *::after {
+    box-sizing: border-box;
+}
+
+.container {
+    background-color: white;
     padding: 10px;
     border-radius: 10px;
     display: flex;
@@ -7,35 +14,70 @@
     flex-direction: row;
     width: 100%;
     justify-content: space-between;
+    overflow-x: hidden; /* Prevent horizontal overflow */
 }
 
-.smallcontainer{
+.container .smallcontainer {
     border-radius: 10px;
     display: flex;
     gap: 10px;
     flex-direction: row-reverse;
     justify-content: center;
-    width: 150px
+    width: 150px;
+    overflow-x: hidden; /* Prevent horizontal overflow */
 }
-.link{
-    color: #0058a0
+
+.container .link {
+    color: #0058a0;
 }
-.number{
+
+.container .number {
     display: flex;
     font-size: 40px;
     font-weight: 100;
     flex-direction: row;
     justify-content: center;
+    word-wrap: break-word; /* Ensure long text wraps */
+    overflow-x: hidden; /* Prevent horizontal overflow */
 }
 
-.containertop{
+.container .containertop {
     display: flex;
     flex-direction: row-reverse;
-    flex : auto;
+    flex: auto;
+    overflow-x: hidden; /* Prevent horizontal overflow */
 }
+
 @media screen and (max-width: 992px) {
-    .link{
+    .container {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+        overflow-x: hidden; /* Prevent horizontal overflow */
+    }
+
+    .container .smallcontainer {
+        width: 100%; /* Ensure it uses the full width on smaller screens */
+        max-width: 100%; /* Remove the fixed max-width */
+        flex-direction: column; /* Adjust layout for smaller screens */
+        overflow-x: hidden; /* Prevent horizontal overflow */
+    }
+
+    .container .link {
         width: 100%;
-        color: #0058a0
+        color: #0058a0;
+    }
+
+    .container .number {
+        font-size: 2rem; /* Adjust font size for smaller screens */
+        word-wrap: break-word; /* Ensure long text wraps */
+        overflow-x: hidden; /* Prevent horizontal overflow */
+    }
+
+    .container .containertop {
+        flex-direction: column; /* Adjust layout for smaller screens */
+        align-items: center;
+        justify-content: center;
+        overflow-x: hidden; /* Prevent horizontal overflow */
     }
 }
