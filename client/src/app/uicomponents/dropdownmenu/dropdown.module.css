@@ -1,31 +1,29 @@
 .container{
-    display:flex;
-    justify-content: center;
+    display: flex;
+    flex-direction: column; /* Arrange items in a column */
+    justify-content: center; /* Center items vertically */
+    align-items: center; /* Center items horizontally */
     background-color: var(--bgSoft);
     border-radius: 10px;
-    padding:5px;
-    align-items: center;
+    padding: 5px;
+    width: 100%; 
 }
 
 .label{
-    display: flex;
-    justify-content: center;
     font-weight: bold;
     padding: 5px;
-    align-items: center;
     color: var(--textSoft);
 }
 .select{
-    display: flex;
-    justify-content: center;
     padding: 4px;
-    -webkit-appearance: none;
     -webkit-appearance: none;
     appearance: none;
     background-color: var(--bgHard);
     border-radius: 10px;
-    align-items: center;
+    width: 100%; /* Make the select take the full width of its parent */
+    max-width: 200px; /* Set a max width for better control */
+    text-align: center; /* Center the text inside the select */
 }
 .option{
-    align-items: center;
+    text-align: center; /* Center the text inside the option */
 }
