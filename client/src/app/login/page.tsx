@@ -94,7 +94,7 @@ export default function Login() {
           </div>
           <div className={styles.buttombuttons}>
             <button type = "submit" className={styles.button} onClick={handleSubmit}>Login</button>
-            <Link href='http://192.168.1.184:3000/apply'>
+            <Link href='https://ll-client.vercel.app/apply'>
               <button className={styles.button}>Apply now</button>
             </Link>
           </div>
