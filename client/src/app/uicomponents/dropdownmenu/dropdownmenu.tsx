@@ -27,10 +27,10 @@ const DropdownMenu:  React.FC<DropdownMenuProps>  = ({sendTimeRange})=> {
           value={timeRange}
           onChange={handleSelectChange}
         >
-          <option value = 'month'>Month</option>
-          <option value="7days">7 Days</option>
-          <option value="30days">30 Days</option>
-          <option value="year">12 Months</option>
+          <option className={styles.option} value = 'month'>Month</option>
+          <option className={styles.option} value="7days">7 Days</option>
+          <option className={styles.option} value="30days">30 Days</option>
+          <option className={styles.option} value="year">12 Months</option>
         </select>
     </div>
   );
