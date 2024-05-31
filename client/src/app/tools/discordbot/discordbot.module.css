@@ -10,7 +10,6 @@
 }
 
 .container{
-    height: 60vh;
     width: 100%;
     background-color: var(--bgSoft);
     padding: 20px;
