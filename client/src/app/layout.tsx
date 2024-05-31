@@ -44,9 +44,6 @@ export default function RootLayout({
     <ThemeProvider>
       <AuthProvider>
         <html lang="en"  className={GeistSans.className}>
-          <Head>
-            <link rel="icon" href="/favicon.ico" />
-          </Head>
           <body>
             <div className={styles.container} >
               <div className = {styles.menu}><Sidebar/></div>

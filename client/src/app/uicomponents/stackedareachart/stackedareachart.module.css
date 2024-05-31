@@ -4,6 +4,7 @@
     background-color: var(--bgSoft);
     padding: 20px;
     border-radius: 10px;
+    border: 1px solid var(--bordercolor)
 }
 .mobilecontainer{
     display: flex;
@@ -13,10 +14,11 @@
     padding: 20px;
     border-radius: 10px;
     align-items: center;
+    border: 1px solid var(--bordercolor)
 }
 
 .title{
     display: flex;
     font-weight: bold;
-    color: var(--textSoft);
+    color: var(--textTitle);
 }

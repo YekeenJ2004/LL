@@ -15,6 +15,7 @@
     flex-direction: row;
     flex : auto;
     justify-content: space-between;
+    color: var(--textTitle)
 }
 .cards{
     background-color: var(--bgSoft);
@@ -30,8 +31,10 @@
 
 .inputbox{
     border-radius: 5px;
-    border: 2px solid var(--bgHard);
-    margin-top: 20px;
+    border: 1px solid var(--buttonborder);
+    background-color: var(--bg);
+    padding-top:3px;
+    padding-left: 2px;
 }
 
 .errormessage{
