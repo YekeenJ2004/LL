@@ -85,7 +85,7 @@ const saveCommissionsToDB = async(comms) =>{
       console.log(`${comm.commission_id} already exists`)
     }
   }
-  closeConnectionToDB()
+  await closeConnectionToDB()
 }
 
 async function getMerchantOffers() {
@@ -105,7 +105,7 @@ async function getMerchantOffers() {
     for(const commission of responseMerchantOffers.merchants) {
       list.push(commission)
     }
-    saveMerchantOffersToDB(list)
+    await saveMerchantOffersToDB(list)
     offset += limit;
     has_next = responseMerchantOffers.has_more
     console.log(has_next)
@@ -134,7 +134,7 @@ const saveMerchantOffersToDB  = async(offers) =>{
 }
 
 //getMerchantOffers()
-//getCommissionsFromSkimlinks('2024-01-01', '2024-05-28', 'cancelled')
-getCommissionsFromSkimlinks('2024-05-25', '2024-05-28', 'active')
+await getCommissionsFromSkimlinks('2024-01-01', '2024-05-28', 'cancelled')
+await getCommissionsFromSkimlinks('2024-05-27', '2024-05-30', 'active')
 
 console.log('go')

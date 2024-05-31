@@ -7,7 +7,7 @@ export const connectToDB = async () =>{
 
     try {
         if (connection.isConnected) return 
-        const db =  await mongoose.connect(process.env.MONGO);
+        const db =  await mongoose.connect('mongodb+srv://yekeen:dSAN1xqtOHYaQYme@cluster0.gz40hal.mongodb.net/skimlinkscommissions?retryWrites=true&w=majority&appName=Cluster0');
         connection.isConnected  = db.connections[0].readyState
     } catch (error) {
         console.log('could not connect to db', error)
