@@ -11,6 +11,7 @@ import { AuthProvider } from "./contexts/authcontext";
 import { ThemeProvider } from "./contexts/themecontext";
 import { GeistSans } from 'geist/font/sans';
 import { GeistMono } from 'geist/font/mono';
+import Head from "next/head";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -43,6 +44,9 @@ export default function RootLayout({
     <ThemeProvider>
       <AuthProvider>
         <html lang="en"  className={GeistSans.className}>
+          <Head>
+            <link rel="icon" href="/favicon.ico" />
+          </Head>
           <body>
             <div className={styles.container} >
               <div className = {styles.menu}><Sidebar/></div>
