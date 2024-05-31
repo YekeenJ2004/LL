@@ -69,7 +69,7 @@ export default function LinkLoopStackedAreaChart(props : any) {
           <YAxis />
           <Tooltip />
           {[...merchantnames].map((datakey : any, index)=>(
-                <Area key = {datakey} type = "monotone" dataKey = {datakey} stackId="1" fill = {barcolour[index]}/>
+                <Area key = {datakey} type = "monotone" dataKey = {datakey} stackId="1" stroke = {barcolour[index]} fillOpacity = {0.1} strokeWidth={1}/>
             ))}
         </AreaChart>
       </ResponsiveContainer>

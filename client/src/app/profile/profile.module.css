@@ -26,7 +26,8 @@
     display: flex;
     gap: 10px;
     flex-direction: column;
-    width: 100%
+    width: 100%;
+    color: var(--textValue)
 }
 
 .inputbox{
@@ -35,6 +36,7 @@
     background-color: var(--bg);
     padding-top:3px;
     padding-left: 2px;
+    margin-bottom: 20px;
 }
 
 .errormessage{
