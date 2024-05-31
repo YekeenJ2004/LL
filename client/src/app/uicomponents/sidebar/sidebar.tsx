@@ -5,7 +5,7 @@ import styles from "./sidebar.module.css"
 import { MdDashboard, MdOutlineLink, MdOutlineContentPaste, MdOutlineLocalOffer, MdAttachMoney   } from 'react-icons/md'
 import { RiSettings4Fill, RiUser6Fill } from 'react-icons/ri'
 import { VscTools } from "react-icons/vsc";
-import { useAuth } from '@/app/authcontext'
+import { useAuth } from '@/app/contexts/authcontext'
 
 const topsidebarMenuItems = [
     {

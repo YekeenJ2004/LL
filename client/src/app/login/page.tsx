@@ -4,7 +4,7 @@ import styles from './login.module.css'
 import Link from 'next/link';
 import CryptoJS from 'crypto-js'
 import Loading from '../uicomponents/loadingspinner/loadingspinner';
-import { useAuth } from '../authcontext';
+import { useAuth } from '../contexts/authcontext';
 
 const setSessionStorageValues  = (username: string, email: string, paypal: string, websitelink: string) =>{
   const passphrase = 'getThisDough'

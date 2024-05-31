@@ -7,7 +7,11 @@ import styles from "./uicomponents/layout.module.css"
 import React from "react";
 import { useState, useEffect } from "react";
 import CryptoJS from "crypto-js";
-import { AuthProvider } from "./authcontext";
+import { AuthProvider } from "./contexts/authcontext";
+import { ThemeProvider } from "./contexts/themecontext";
+import { GeistSans } from 'geist/font/sans';
+import { GeistMono } from 'geist/font/mono';
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -36,15 +40,17 @@ export default function RootLayout({
     setIsLoggedIn(false);
   }, [])
   return (
-    <AuthProvider>
-      <html lang="en">
-        <body>
-          <div className={styles.container}>
-            <div className = {styles.menu}><Sidebar/></div>
-            {isLoggedIn? <div className= {styles.loggedincontent}><Navbar/>{children}</div> : <div className= {styles.content}><Navbar/>{children}</div> }
-          </div>
-        </body>
-      </html>
-    </AuthProvider>
+    <ThemeProvider>
+      <AuthProvider>
+        <html lang="en"  className={GeistSans.className}>
+          <body>
+            <div className={styles.container} >
+              <div className = {styles.menu}><Sidebar/></div>
+              {isLoggedIn? <div className= {styles.loggedincontent}><Navbar/>{children}</div> : <div className= {styles.content}><Navbar/>{children}</div> }
+            </div>
+          </body>
+        </html>
+      </AuthProvider>
+    </ThemeProvider>
   );
 }

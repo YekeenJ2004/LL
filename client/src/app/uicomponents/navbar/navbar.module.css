@@ -5,10 +5,11 @@
     align-items: center;
     justify-content: space-between;
     border-radius: 10px;
+    border: 1px solid var(--bordercolor)
 }
 
 .title{
-    color: var(--textSoft);
+    color: var(--textTitle);
     font-weight: bold;
     text-transform: capitalize;
 }
@@ -22,6 +23,7 @@
     display: flex;
     align-items: center;
     gap: 20px;
+    color: var(--textValue)
 }
 .icons{
     display: flex;

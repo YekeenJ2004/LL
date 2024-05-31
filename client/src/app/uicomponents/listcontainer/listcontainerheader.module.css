@@ -12,6 +12,7 @@
     flex-direction: row;
     width: 100%;
     justify-content: space-between;
+    color: var(--textTitle)
 }
 
 .smallcontainer {
@@ -30,6 +31,7 @@
     font-weight: 100;
     flex-direction: row;
     justify-content: center;
+    color: var(--textValue)
 }
 
 .containertop {

@@ -1,6 +1,6 @@
 .title{
     font-weight: bold;
-    color: var(--textSoft);
+    color: var(--textTitle);
 }
 .container{
     height: 60vh;
@@ -19,22 +19,28 @@
 
 .inputbox{
     border-radius: 5px;
-    border: 2px solid var(--bgHard)
+    border: 1px solid var(--buttonborder);
+    background-color: var(--bg);
+    padding-top:3px;
+    padding-left: 2px;
 }
 
 .textarea{
     border-radius: 5px;
     height: 80%;
     width: 100%;
-    border: 2px solid var(--bgHard)
+    color: var(--bgSoft);
+    border: 1px solid var(--buttonborder);
+    background-color: var(--bg)
 }
 
 .button{
     border-radius: 5px;
-    background-color: var(--bgHard);
+    margin: 2px;
     padding-left: 5px;
     padding-right: 5px;
-    margin: 2px;
-    border: 1px solid darkgray;
-    padding: 2px;
+    padding-top: 2px;
+    border: 1px solid var(--buttonborder);
+    background-color: var(--button);
+    color: var(--textValue);
 }

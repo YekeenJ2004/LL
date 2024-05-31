@@ -6,7 +6,7 @@
     position: sticky;
     justify-content: space-between;
     margin-top: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 20px;; 
 }
 
 .menulink{
@@ -14,7 +14,8 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    border-radius: 10px
+    border-radius: 10px;
+    color: var(--textValue)
 }
 
 

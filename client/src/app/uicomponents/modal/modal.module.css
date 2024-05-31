@@ -22,6 +22,7 @@
     z-index: 1001;  /* Higher z-index than overlay */
     max-width: 500px; /* Or any other max-width or width */
     justify-content: center;
+    border: 1px solid var(--bordercolor)
 }
 
 .button{

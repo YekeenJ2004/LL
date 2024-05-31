@@ -5,7 +5,8 @@
     display: flex;
     gap: 10px;
     flex-direction: column;
-    width: 100%
+    width: 100%;
+    border: 1px solid var(--bordercolor) 
 }
 
 .number{
@@ -13,7 +14,8 @@
     font-size: 40px;
     font-weight: 100;
     flex-direction: row;
-    justify-content: center
+    justify-content: center;
+    color: var(--textValue)
 }
 .containertop{
     font-weight: bold;
@@ -21,4 +23,5 @@
     flex-direction: row;
     flex : auto;
     justify-content: space-between;
+    color: var(--textTitle)
 }

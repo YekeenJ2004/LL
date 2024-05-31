@@ -59,7 +59,6 @@ export default function LinkLoopStackedBarChart(props : any) {
                         bottom: 5,
                     }}
                 >
-                    <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="name" />
                     <YAxis />
                     <Tooltip />

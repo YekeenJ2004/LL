@@ -1,20 +1,29 @@
 .container{
-    display:flex;
-    justify-content: space-between;
+    width:100%;
     background-color: var(--bgSoft);
     border-radius: 10px;
     padding:10px;
+    border: 1px solid var(--bordercolor)
 }
 .inputbox{
     border-radius: 5px;
-    border: 2px solid var(--bgHard)
+    border: 1px solid var(--buttonborder);
+    background-color: var(--bg);
+    padding: 3px
 }
 .button{
     border-radius: 5px;
-    background-color: var(--bgHard);
+    margin: 2px;
     padding-left: 5px;
     padding-right: 5px;
-    margin: 2px;
-    border-color: black;
-    padding: 2px;
+    padding-top: 2px;
+    border: 1px solid var(--buttonborder);
+    background-color: var(--button);
+    color: var(--textValue);
+}
+
+.form{
+    display: flex;
+    width:100%;
+    justify-content: space-between;
 }

@@ -6,6 +6,7 @@
 .content{
     display: flex;
     flex-direction: column;
+    color: var(--textTitle)
 }
 
 .container{

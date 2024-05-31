@@ -6,23 +6,27 @@
     border-radius: 10px;
     padding: 5px;
     width: 100%; 
+    border: 1px solid var(--bordercolor)
 }
 
 .label{
     font-weight: bold;
     padding: 5px;
-    color: var(--textSoft);
+    color: var(--textTitle);
 }
 .select{
     padding: 4px;
     -webkit-appearance: none;
     appearance: none;
-    background-color: var(--bgHard);
+    background-color: var(--bg);
     border-radius: 10px;
     width: 70%; /* Make the select take the full width of its parent */
     max-width: 100px; /* Set a max width for better control */
-    text-align: center; /* Center the text inside the select */
+    border: 1px solid var(--bordercolor);
+    color: var(--textValue);
 }
+
+
 .option{
     text-align: center; /* Center the text inside the option */
 }

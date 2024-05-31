@@ -6,7 +6,7 @@
 }
 
 .container {
-    background-color: white;
+    background-color: var(--listContainerItem);
     padding: 10px;
     border-radius: 10px;
     display: flex;
@@ -15,6 +15,7 @@
     width: 100%;
     justify-content: space-between;
     overflow-x: hidden; /* Prevent horizontal overflow */
+    border: 1px solid var(--bordercolor)
 }
 
 .container .smallcontainer {
@@ -25,10 +26,11 @@
     justify-content: center;
     width: 150px;
     overflow-x: hidden; /* Prevent horizontal overflow */
+    color: var(--textValue)
 }
 
 .container .link {
-    color: #0058a0;
+    color: #0073c5;
 }
 
 .container .number {
@@ -50,7 +52,7 @@
 
 @media screen and (max-width: 992px) {
     .container {
-        flex-direction: column;
+        flex-direction: row;
         align-items: center;
         padding: 10px;
         overflow-x: hidden; /* Prevent horizontal overflow */

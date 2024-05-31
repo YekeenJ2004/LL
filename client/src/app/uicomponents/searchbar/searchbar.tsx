@@ -19,7 +19,7 @@ const Searchbar: React.FC<SearchbarProps> = ({ setSearchTerm }) => {
   }
   return (
     <div className  ={styles.container}>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className={styles.form}>
         <input className= {styles.inputbox} placeholder='Search for a retailer' onChange={handleInputChange}></input>
         <button className = {styles.button} type="submit" onClick={handleSearch}>Search</button>
       </form>

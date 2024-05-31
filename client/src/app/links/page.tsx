@@ -4,7 +4,7 @@ import styles from  '../uicomponents/layout.module.css'
 import DropdownMenu from '../uicomponents/dropdownmenu/dropdownmenu'
 import LinkListContainer from '../uicomponents/listcontainer/listcontainer'
 import CryptoJS from 'crypto-js'
-import { useAuth } from '../authcontext'
+import { useAuth } from '../contexts/authcontext'
 import Loading from '../uicomponents/loadingspinner/loadingspinner'
 
 // const links = {

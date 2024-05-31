@@ -13,6 +13,7 @@
     width: 100%;
     max-width: 100%; /* Ensure it doesn't exceed the viewport width */
     overflow-x: hidden; /* Prevent horizontal overflow */
+    border: 1px solid var(--bordercolor)
 }
 
 .smallcontainer {

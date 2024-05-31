@@ -8,7 +8,7 @@ import LinkLoopBarChart from '../uicomponents/barchart/linkloopbarchart'
 import DropdownMenu from '../uicomponents/dropdownmenu/dropdownmenu'
 import CryptoJS from 'crypto-js'
 import Loading from '../uicomponents/loadingspinner/loadingspinner'
-import { useAuth } from '../authcontext'
+import { useAuth } from '../contexts/authcontext'
 
 
 const fetchData = async (xcust: string,timeRange: string) =>{

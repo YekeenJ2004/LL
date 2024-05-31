@@ -18,5 +18,5 @@
 .title{
     display: flex;
     font-weight: bold;
-    color: var(--textSoft);
+    color: var(--textTitle);
 }
