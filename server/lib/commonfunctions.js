@@ -9,10 +9,7 @@ function roundToTwoDecimals(obj) {
       const url = value[1];
   
       // Round each number to two decimal places
-      const roundedNumbers = numbers.map((num, index) => {
-        if(index!= 1){
-            num.toFixed(2)
-        }});
+      const roundedNumbers = numbers.map((num, index) => index == 1? num = num : num.toFixed(2));
   
       // Store the rounded numbers and the original URL back into the new object
       roundedObj[key] = [roundedNumbers, url];
