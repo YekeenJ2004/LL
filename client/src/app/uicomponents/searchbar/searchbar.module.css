@@ -9,7 +9,8 @@
     border-radius: 5px;
     border: 1px solid var(--buttonborder);
     background-color: var(--bg);
-    padding: 3px
+    padding: 3px;
+    color: var(--textValue)
 }
 .button{
     border-radius: 5px;

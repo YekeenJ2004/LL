@@ -17,19 +17,26 @@
     margin-bottom: 10px;
 }
 
+.button:disabled {
+    background-color: var(--bg); /* Gray */
+    color: #666666;
+    cursor: not-allowed;
+}
+
 .inputbox{
     border-radius: 5px;
     border: 1px solid var(--buttonborder);
     background-color: var(--bg);
     padding-top:3px;
     padding-left: 2px;
+    color: var(--textValue)
 }
 
 .textarea{
     border-radius: 5px;
     height: 80%;
     width: 100%;
-    color: var(--bgSoft);
+    color: var(--textValue);
     border: 1px solid var(--buttonborder);
     background-color: var(--bg)
 }
