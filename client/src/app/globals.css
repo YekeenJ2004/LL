@@ -30,7 +30,7 @@ body.dark{
     --listContainerItem: #050505; 
     --textValue: #EDEDED;
     --textTitle: #A1A1A1;
-    --bordercolor: #30363d;
+    --bordercolor: #30363d; 
     background: var(--bg);
     background-color: var(--bg);
 }

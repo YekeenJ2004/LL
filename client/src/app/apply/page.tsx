@@ -4,6 +4,7 @@ import styles from './apply.module.css'
 import Link from 'next/link';
 import {isStrongPassword}from '../utils'
 import { convertToBool } from '../utils';
+import Loading from '../uicomponents/loadingspinner/loadingspinner';
 
 
 const  checkIfValidEmail  = (email: string)  =>{
@@ -26,6 +27,11 @@ export default function Apply() {
   const [applied, setApplied] = useState(false)
   const [userExists, setUserExists] = useState(false)
   const [savedUser, setSavedUser] = useState(true)
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(()=>{
+    setIsLoading(false)
+  },[])
 
   let validForm = isValidPassword && isValidemail && convertToBool(websiteLink) && convertToBool(username) && isValidPaypal && convertToBool(response)
   const handleSubmit = (event : React.MouseEvent<HTMLButtonElement>) => {
@@ -35,6 +41,7 @@ export default function Apply() {
   }
 
   const onApply = async (email : String , password : String) =>{
+    
     try{
       const response = await fetch(`https://ll-server-yekeen-jimohs-projects.vercel.app/api/apply`,{
         method : 'POST',
@@ -118,74 +125,78 @@ export default function Apply() {
       </div>
     )
   }
+
   return (
     <div className= {styles.main}>
-      <form className={styles.form}>
-        <div className={styles.title}>
-          Application Form
-        </div>
-        <div>
-          <div className={styles.field}>
-            <input className={styles.inputbox}
-              type ='text'
-              value = {email}
-              placeholder= 'E-mail'
-              onChange={onChangeEmail}
-            >
-            </input>
-            {emailExists && <span className={styles.errormessage}> E-mail already exists</span>}
-            {!isValidemail && <span className={styles.errormessage}> E-mail is not valid </span>}
+      {isLoading && <Loading></Loading>}
+      {!isLoading&&
+        <form className={styles.form}>
+          <div className={styles.title}>
+            Application Form
           </div>
-          <div className={styles.field}>
-            <input className={styles.inputbox}
-              type ='text'
-              value = {username}
-              placeholder= 'Username'
-              onChange={onChangeUsername}
-            >
-            </input>
-            {userExists && <span className={styles.errormessage}> username already exists</span>}
+          <div>
+            <div className={styles.field}>
+              <input className={styles.inputbox}
+                type ='text'
+                value = {email}
+                placeholder= 'E-mail'
+                onChange={onChangeEmail}
+              >
+              </input>
+              {emailExists && <span className={styles.errormessage}> E-mail already exists</span>}
+              {!isValidemail && <span className={styles.errormessage}> E-mail is not valid </span>}
+            </div>
+            <div className={styles.field}>
+              <input className={styles.inputbox}
+                type ='text'
+                value = {username}
+                placeholder= 'Username'
+                onChange={onChangeUsername}
+              >
+              </input>
+              {userExists && <span className={styles.errormessage}> username already exists</span>}
+            </div>
+            <div className={styles.field}>
+              <input className={styles.inputbox}
+                type ='text'
+                value = {password}
+                placeholder = 'Password'
+                onChange={onChangePassword}
+              >
+              </input>
+              {!isValidPassword && <span className={styles.errormessage}> Password not strong enough</span>}
+            </div>
+            <div className={styles.field}>
+              <input className={styles.inputbox}
+                type ='text'
+                value = {paypal}
+                placeholder= 'Paypal email'
+                onChange={onChangePaypal}
+              >
+              </input>
+              {!isValidPaypal && <span className={styles.errormessage}> enter a valid email please</span>}
+            </div>
+            <div className={styles.field}>
+              <input className={styles.inputbox}
+                type ='text'
+                value = {websiteLink}
+                placeholder= 'Website link'
+                onChange={(e) => setWebsiteLink(e.target.value)}
+              >
+              </input>
+            </div>
+            <div className={styles.field}>
+            <textarea className = {styles.textarea} value={response} placeholder= "Why would you be a good fit for us?" onChange={(e) => setResponse(e.target.value)}></textarea>
+            </div>
           </div>
-          <div className={styles.field}>
-            <input className={styles.inputbox}
-              type ='text'
-              value = {password}
-              placeholder = 'Password'
-              onChange={onChangePassword}
-            >
-            </input>
-            {!isValidPassword && <span className={styles.errormessage}> Password not strong enough</span>}
+          <div className={styles.buttombuttons}>
+            <button type = "submit" className={styles.button} onClick={handleSubmit} disabled = {!validForm}>Apply now</button>
+            <Link href='https://ll-client.vercel.app/login' >
+              <button className={styles.button}>Login</button>
+            </Link>
           </div>
-          <div className={styles.field}>
-            <input className={styles.inputbox}
-              type ='text'
-              value = {paypal}
-              placeholder= 'Paypal email'
-              onChange={onChangePaypal}
-            >
-            </input>
-            {!isValidPaypal && <span className={styles.errormessage}> enter a valid email please</span>}
-          </div>
-          <div className={styles.field}>
-            <input className={styles.inputbox}
-              type ='text'
-              value = {websiteLink}
-              placeholder= 'Website link'
-              onChange={(e) => setWebsiteLink(e.target.value)}
-            >
-            </input>
-          </div>
-          <div className={styles.field}>
-          <textarea className = {styles.textarea} value={response} placeholder= "Why would you be a good fit for us?" onChange={(e) => setResponse(e.target.value)}></textarea>
-          </div>
-        </div>
-        <div className={styles.buttombuttons}>
-          <button type = "submit" className={styles.button} onClick={handleSubmit} disabled = {!validForm}>Apply now</button>
-          <Link href='https://ll-client.vercel.app/login' >
-            <button className={styles.button}>Login</button>
-          </Link>
-        </div>
-      </form>
+        </form>
+      }
     </div>
 
   )

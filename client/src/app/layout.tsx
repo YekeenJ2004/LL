@@ -46,7 +46,7 @@ export default function RootLayout({
         <html lang="en"  className={GeistSans.className}>
           <body>
             <div className={styles.container} >
-              <div className = {styles.menu}><Sidebar/></div>
+              {isLoggedIn? <div className = {styles.menu}><Sidebar/></div> :<div></div>}
               {isLoggedIn? <div className= {styles.loggedincontent}><Navbar/>{children}</div> : <div className= {styles.content}><Navbar/>{children}</div> }
             </div>
           </body>
