@@ -94,7 +94,7 @@ app.post('/api/checkemail', async (req, res) => {
 app.post('/api/apply', async (req, res) => {
     const { email, username, password, paypal, websiteLink} = req.body
     const saved = await saveNewUserTODatabase(email, username, password, paypal, websiteLink)
-    sendEmail(email, 'Application Recieved', 'test1234', applyHtmlContent)
+    sendEmail(email, 'Application Recieved', 'test1234', applyHtmlContent, username)
     res.send({saved: saved});
 });
 
