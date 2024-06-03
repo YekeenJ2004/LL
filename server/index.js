@@ -1,4 +1,3 @@
-import { connectToDB, closeConnectionToDB } from "./lib/utils.js"
 import {User} from "./lib/models.js"
 import {convertToDashboardDataObject} from './lib/dashboardpagedata.js'
 import {convertToMerchantPageDataObject} from './lib/merchantpagedata.js'
@@ -11,6 +10,11 @@ import express from 'express';
 import cors from 'cors'
 import { fetchPaymentsFromDB } from "./lib/payments.js"
 import { changePaypal, checkifValidPaypal } from "./lib/changepaypal.js"
+import dotenv from 'dotenv';
+import { sendEmail } from "./lib/utils.js"
+import { applyHtmlContent } from "./lib/templates.js"
+dotenv.config();
+
 const app = express()
 const port = 5000
 
@@ -89,7 +93,8 @@ app.post('/api/checkemail', async (req, res) => {
 
 app.post('/api/apply', async (req, res) => {
     const { email, username, password, paypal, websiteLink} = req.body
-    const saved = saveNewUserTODatabase(email, username, password, paypal, websiteLink)
+    const saved = await saveNewUserTODatabase(email, username, password, paypal, websiteLink)
+    sendEmail(email, 'Application Recieved', 'test1234', applyHtmlContent)
     res.send({saved: saved});
 });
 
