@@ -47,7 +47,7 @@ export default function Login() {
       const response = await fetch(`https://ll-server-yekeen-jimohs-projects.vercel.app/api/login`,{
         method : 'POST',
         headers: {'Content-Type' : 'application/json'},
-        body: JSON.stringify({email, password})
+        body: JSON.stringify({email: email.toLowerCase(), password})
       })
       const data = await response.json()
       if(data.isValid){

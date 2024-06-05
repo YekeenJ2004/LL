@@ -26,7 +26,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         sessionStorage.setItem('loggedin', '0')
         sessionStorage.setItem('email', '0')
         sessionStorage.setItem('paypal', '0')
-
     }
 
     useEffect(() =>{

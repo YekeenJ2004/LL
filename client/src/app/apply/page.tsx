@@ -43,7 +43,7 @@ export default function Apply() {
   const onApply = async (email : String , password : String) =>{
     
     try{
-      const response = await fetch(`https://ll-server-yekeen-jimohs-projects.vercel.app/api/apply`,{
+      const response = await fetch(`http://localhost:5000/api/apply`,{
         method : 'POST',
         headers: {'Content-Type' : 'application/json'},
         body: JSON.stringify({email,username,password, paypal, websiteLink})
@@ -52,6 +52,7 @@ export default function Apply() {
       setSavedUser(data.saved)
     }catch(err){
       console.log(err)
+      setSavedUser(false)
     }
     setApplied(true)
   }
@@ -78,7 +79,7 @@ export default function Apply() {
         const response = await fetch(`https://ll-server-yekeen-jimohs-projects.vercel.app/api/checkemail`,{
           method : 'POST',
           headers: {'Content-Type' : 'application/json'},
-          body: JSON.stringify({email : email})
+          body: JSON.stringify({email : email.toLowerCase()})
         })
         const data = await response.json()
         console.log(data.emailExists)
