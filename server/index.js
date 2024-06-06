@@ -11,9 +11,9 @@ import cors from 'cors'
 import { fetchPaymentsFromDB } from "./lib/payments.js"
 import { changePaypal, checkifValidPaypal } from "./lib/changepaypal.js"
 import dotenv from 'dotenv';
-import { sendEmail } from "./sendEmail.js"
-import { applyHtmlContent } from "./lib/emailtemplates.js"
-import { authorize } from "./OAuth2.js"
+// import { sendEmail } from "./sendEmail.js"
+// import { applyHtmlContent } from "./lib/emailtemplates.js"
+// import { authorize } from "./OAuth2.js"
 dotenv.config();
 
 const app = express()
