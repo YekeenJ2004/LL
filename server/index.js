@@ -11,8 +11,9 @@ import cors from 'cors'
 import { fetchPaymentsFromDB } from "./lib/payments.js"
 import { changePaypal, checkifValidPaypal } from "./lib/changepaypal.js"
 import dotenv from 'dotenv';
-import { sendEmail } from "./lib/utils.js"
-import { applyHtmlContent } from "./lib/templates.js"
+import { sendEmail } from "./sendEmail.js"
+import { applyHtmlContent } from "./lib/emailtemplates.js"
+import { authorize } from "./OAuth2.js"
 dotenv.config();
 
 const app = express()
@@ -93,10 +94,21 @@ app.post('/api/checkemail', async (req, res) => {
 
 app.post('/api/apply', async (req, res) => {
     const { email, username, password, paypal, websiteLink} = req.body
-    const saved = await saveNewUserTODatabase(email, username, password, paypal, websiteLink)
-    sendEmail(email, 'Application Recieved', 'test1234', applyHtmlContent, username)
+    let saved = false 
+    try{
+        saved = await saveNewUserTODatabase(email, username, password, paypal, websiteLink)
+        // authorize((auth) => {
+        //     sendEmail(auth, email, 'Application', applyHtmlContent(username, 'welcome'));
+        // });
+        saved = true
+    }catch(err){
+        saved = false
+        console.log(err)
+    }
+      
     res.send({saved: saved});
 });
+
 
 app.post('/api/login', async (req, res) => {
     const { email, password} = req.body

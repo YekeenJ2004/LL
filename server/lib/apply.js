@@ -13,7 +13,7 @@ export async function saveNewUserTODatabase( email, username, password, paypal, 
         const hashedPassword = await bcrypt.hash(password, 10);
         const user = new User(
             {
-                email: email,
+                email: email.toLowerCase(),
                 username: username, 
                 password: hashedPassword,
                 paypal : paypal,

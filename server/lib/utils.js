@@ -28,28 +28,30 @@ export const closeConnectionToDB = async () => {
     }
 }
 
-const transporter = nodemailer.createTransport({
-    service: 'gmail', // You can use other services like 'yahoo', 'outlook', etc.
-    auth: {
-      user: 'hello@linkloop.app', // Your email address
-      pass: 'u4DhhKdm72d35nH<1',  // Your email password (Consider using environment variables for security)
-    },
-});
+// const transporter = nodemailer.createTransport({
+//     host: 'smtp.gmail.com',
+//     port: 465,
+//     secure: true, // use SSL
+//     auth: {
+//       user: 'hello@linkloop.app', // Your email address
+//       pass: 'u4DhhKdm72d35nH<1',  // Your email password (Consider using environment variables for security)
+//     },
+// });
 
-export const sendEmail = (to, subject, text, htmlContent, username) => {
-    const mailOptions = {
-      from: 'hello@linkloop.app', // Sender address
-      to: to,                       // List of recipients
-      subject: subject,             // Subject line
-      text: text,                   // Plain text body
-      html: htmlContent(username, text),            // HTML body content
-    };
+// export const sendEmail = (to, subject, text, htmlContent, username) => {
+//     const mailOptions = {
+//       from: 'hello@linkloop.app', // Sender address
+//       to: to,                       // List of recipients
+//       subject: subject,             // Subject line
+//       text: text,                   // Plain text body
+//       html: htmlContent(username, text),            // HTML body content
+//     };
 
-    transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-          console.log('Error occurred: ' + error.message);
-        } else {
-          console.log('Email sent: ' + info.response);
-        }
-    });
-}
+//     transporter.sendMail(mailOptions, (error, info) => {
+//         if (error) {
+//           console.log('Error occurred: ' + error.message);
+//         } else {
+//           console.log('Email sent: ' + info.response);
+//         }
+//     });
+// }
