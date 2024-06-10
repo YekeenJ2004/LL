@@ -1,14 +1,25 @@
 export const applyHtmlContent = (username, text)=>{
     return(
-        `<div>
-            <p>Hello ${username},</p>
-            <p>${text}</p>
-            <footer style="margin-top: 20px; border-top: 1px solid #ccc; padding-top: 10px;">
-                <p>Best regards,</p>
-                <p>Link Loop</p>
-                <img src=\"https://www.linkloop.app/favicon.ico\" alt=\"Company Logo\">
-                <p><a href="https://www.linkloop.app">www.linkloop.app</a></p>
-            </footer>
+        `<div style="font-family: Arial, sans-serif; margin: 0; padding: 0;">
+            <div class="header" style="text-align: center; padding: 10px;">
+                <img src="https://linkloop.app/favicon.ico" alt="Company Logo" style="width: 150px;">
+            </div>
+
+            <div class="content" style="padding: 20px;">
+                <h3>Hello, ${username}</h3>
+                <p>We are excited to share with you our latest updates and news. Please find the details below:</p>
+                <!-- Your email content goes here -->
+            </div>
+
+            <div class="footer" style="text-align: center; background-color: #f2f2f2; padding: 20px; font-size: 12px;">
+                <img src="https://linkloop.app/favicon.ico" alt="Company Logo" style="width: 50px; vertical-align: middle;">
+                <span style="margin: 0 10px;">
+                    <a href="mailto:hello@linkloop.app" style="color: #333; text-decoration: none;">hello@linkloop.app</a>
+                </span>
+                <span style="margin: 0 10px;">
+                    <a href="https://www.linkloop.app" style="color: #333; text-decoration: none;">www.company.com</a>
+                </span>
+            </div>
         </div>`
     )
 }

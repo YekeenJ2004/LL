@@ -11,11 +11,12 @@ import cors from 'cors'
 import { fetchPaymentsFromDB } from "./lib/payments.js"
 import { changePaypal, checkifValidPaypal } from "./lib/changepaypal.js"
 import dotenv from 'dotenv';
-// import { sendEmail } from "./sendEmail.js"
-// import { applyHtmlContent } from "./lib/emailtemplates.js"
-// import { authorize } from "./OAuth2.js"
+import { sendEmail } from "./sendEmail.js"
+import { applyHtmlContent } from "./lib/emailtemplates.js"
+import { authorize } from "./OAuth2.js"
 dotenv.config();
 
+const MONGO = process.env.MONGO
 const app = express()
 const port = 5000
 
@@ -97,9 +98,9 @@ app.post('/api/apply', async (req, res) => {
     let saved = false 
     try{
         saved = await saveNewUserTODatabase(email, username, password, paypal, websiteLink)
-        // authorize((auth) => {
-        //     sendEmail(auth, email, 'Application', applyHtmlContent(username, 'welcome'));
-        // });
+        authorize((auth) => {
+            sendEmail(auth, email, 'Application', applyHtmlContent(username, 'welcome'));
+        });
         saved = true
     }catch(err){
         saved = false

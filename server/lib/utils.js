@@ -1,16 +1,14 @@
 import mongoose from "mongoose";
 import dotenv from 'dotenv';
-import nodemailer from 'nodemailer'
 dotenv.config();
 
-const mongoUrl = `${process.env.MONGO}`
+const mongoUrl = process.env.MONGO
 console.log(process.env.PORT)
 export const connectToDB = async () =>{
     const connection = {}
-
     try {
         if (connection.isConnected) return 
-        const db =  await mongoose.connect(`${process.env.MONGO}`);
+        const db =  await mongoose.connect(process.env.MONGO);
         connection.isConnected  = db.connections[0].readyState
     } catch (error) {
         console.log('could not connect to db', error)
@@ -28,6 +26,9 @@ export const closeConnectionToDB = async () => {
     }
 }
 
+export const deleteUser = (username) =>{
+
+}
 // const transporter = nodemailer.createTransport({
 //     host: 'smtp.gmail.com',
 //     port: 465,
