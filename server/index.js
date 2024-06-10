@@ -47,6 +47,7 @@ app.get('/', (req, res) => {
 });
 app.get('/log', (req, res) => {
     log()
+    res.send('logged')
 });
 app.post('/api/changepaypal', async (req, res) => {
     const {username, paypal} = req.body
