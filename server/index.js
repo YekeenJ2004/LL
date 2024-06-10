@@ -16,6 +16,7 @@ import { applyHtmlContent } from "./lib/emailtemplates.js"
 import { google } from "googleapis"
 import fetch from "node-fetch"
 import { encryptToken } from "./lib/utils.js"
+import fs from 'fs'
 dotenv.config();
 
 const MONGO = process.env.MONGO
