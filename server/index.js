@@ -14,6 +14,7 @@ import dotenv from 'dotenv';
 import { sendEmail } from "./sendEmail.js"
 import { applyHtmlContent } from "./lib/emailtemplates.js"
 import { authorize } from "./OAuth2.js"
+import { log } from "./consolelog.js"
 dotenv.config();
 
 const MONGO = process.env.MONGO
@@ -44,7 +45,9 @@ app.use(express.json());
 app.get('/', (req, res) => {
     res.send('Welcome to the backend!');
 });
-
+app.get('/log', (req, res) => {
+    log()
+});
 app.post('/api/changepaypal', async (req, res) => {
     const {username, paypal} = req.body
     const validPaypal = await checkifValidPaypal(username, paypal)
