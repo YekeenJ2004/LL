@@ -13,8 +13,9 @@ import { changePaypal, checkifValidPaypal } from "./lib/changepaypal.js"
 import dotenv from 'dotenv';
 import { sendEmail } from "./sendEmail.js"
 import { applyHtmlContent } from "./lib/emailtemplates.js"
-import { authorize } from "./OAuth2.js"
-import { log } from "./consolelog.js"
+import { google } from "googleapis"
+import fetch from "node-fetch"
+import { encryptToken } from "./lib/utils.js"
 dotenv.config();
 
 const MONGO = process.env.MONGO
@@ -22,7 +23,62 @@ const app = express()
 const port = 5000
 
 
+const SCOPES = ['https://www.googleapis.com/auth/gmail.send'];
 
+const oAuth2Client = new google.auth.OAuth2(
+    process.env.client_id,
+    process.env.client_secret,
+    process.env.redirect_uris
+);
+
+app.get('/oauth2login', (req, res) => {
+    const params = new URLSearchParams({
+        client_id: process.env.client_id,
+        redirect_uri: process.env.redirect_uris,
+        response_type: 'code',
+        scope: SCOPES.join(' '),
+        access_type: 'offline',
+        prompt: 'consent',
+    })
+    const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?${params.toString()}`;
+    res.redirect(authUrl);
+});
+
+app.get('/oauth2callback', async (req, res) => {
+    const { code } = req.query;
+  
+    const params = new URLSearchParams({
+      client_id: process.env.client_id,
+      client_secret: process.env.client_secret,
+      code,
+      redirect_uri: process.env.redirect_uris,
+      grant_type: 'authorization_code',
+    });
+  
+    try {
+        const response = await fetch('https://oauth2.googleapis.com/token', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: params.toString(),
+        });
+  
+        const tokens = await response.json();
+    
+        if (tokens.error) {
+            console.error('Error exchanging code for tokens:', tokens.error);
+            res.send('Error during authorization. Check the console for details.');
+        } else {
+            oAuth2Client.setCredentials(tokens);
+            const encryptedTokens = encryptToken(JSON.stringify(tokens));
+            fs.writeFileSync('token.enc', encryptedTokens);
+            console.log('Tokens encrypted and stored to token.enc');
+            res.send('Authorization successful! You can close this window.');      
+        }
+    }catch(error){
+        console.error('Error retrieving access token:', error);
+        res.send('Error during authorization. Check the console for details.');
+    }
+});
 
 const findUserFromEmail = async (email) =>{
     const user = await User.findOne({email : email}) 
@@ -45,10 +101,7 @@ app.use(express.json());
 app.get('/', (req, res) => {
     res.send('Welcome to the backend!');
 });
-app.get('/log', (req, res) => {
-    log()
-    res.send('logged')
-});
+
 app.post('/api/changepaypal', async (req, res) => {
     const {username, paypal} = req.body
     const validPaypal = await checkifValidPaypal(username, paypal)
@@ -102,9 +155,7 @@ app.post('/api/apply', async (req, res) => {
     let saved = false 
     try{
         saved = await saveNewUserTODatabase(email, username, password, paypal, websiteLink)
-        authorize((auth) => {
-            sendEmail(auth, email, 'Application', applyHtmlContent(username, 'welcome'));
-        });
+        await sendEmail(email, 'Application', applyHtmlContent(username, 'welcome'))
         saved = true
     }catch(err){
         saved = false

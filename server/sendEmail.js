@@ -1,5 +1,17 @@
 import{google} from 'googleapis'
-import { authorize } from './OAuth2.js';
+import { decryptToken } from './lib/utils.js';
+
+const oAuth2Client = new google.auth.OAuth2(
+  process.env.client_id,
+  process.env.client_secret,
+  process.env.redirect_uris
+);
+
+function getDecryptedTokens() {
+  const encryptedTokens = fs.readFileSync('token.enc', 'utf8');
+  const decryptedTokens = decryptToken(encryptedTokens);
+  return JSON.parse(decryptedTokens);
+}
 
 function makeBody(to, from, subject, htmlMessage) {
   const str = [
@@ -25,8 +37,11 @@ function makeBody(to, from, subject, htmlMessage) {
     .replace(/=+$/, '');
 }
 
-export function sendEmail(auth, to, subject, htmlMessage) {
-  const gmail = google.gmail({ version: 'v1', auth });
+export function sendEmail( to, subject, htmlMessage) {
+  const tokens = getDecryptedTokens();
+  oAuth2Client.setCredentials(tokens);
+
+  const gmail = google.gmail({ version: 'v1', oAuth2Client });
   const raw = makeBody(to, 'hello@linkloop.app', subject, htmlMessage);
   gmail.users.messages.send(
     {
