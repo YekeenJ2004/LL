@@ -42,7 +42,7 @@ export function decryptToken(text) {
   }
   
   export function encryptToken(token) {
-    const iv = crypto.randomBytes(process.env.IV_LENGTH);
+    const iv = crypto.randomBytes(Number(process.env.IV_LENGTH));
     const cipher = crypto.createCipheriv('aes-256-cbc', Buffer.from(process.env.ENCRYPTION_KEY, 'hex'), iv);
     let encrypted = cipher.update(JSON.stringify(token));
     encrypted = Buffer.concat([encrypted, cipher.final()]);
