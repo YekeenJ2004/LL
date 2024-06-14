@@ -17,7 +17,7 @@ export const applyHtmlContent = (username, text)=>{
                     <a href="mailto:hello@linkloop.app" style="color: #333; text-decoration: none;">hello@linkloop.app</a>
                 </span>
                 <span style="margin: 0 10px;">
-                    <a href="https://www.linkloop.app" style="color: #333; text-decoration: none;">www.company.com</a>
+                    <a href="https://www.linkloop.app" style="color: #333; text-decoration: none;">www.Link Loop.com</a>
                 </span>
             </div>
         </div>`
