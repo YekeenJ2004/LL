@@ -9,8 +9,8 @@ const oAuth2Client = new google.auth.OAuth2(
   process.env.redirect_uris
 );
 
-function getDecryptedTokens() {
-  const encryptedTokens = Token.findOne({name: 'token'})
+const getDecryptedTokens = async() => {
+  const encryptedTokens = await Token.findOne({name: 'token'})
   const decryptedTokens = decryptToken(encryptedTokens.token);
   return JSON.parse(decryptedTokens);
 }
