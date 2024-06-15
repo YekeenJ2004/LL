@@ -11,7 +11,7 @@ const oAuth2Client = new google.auth.OAuth2(
 
 function getDecryptedTokens() {
   const encryptedTokens = Token.findOne({name: 'token'})
-  const decryptedTokens = decryptToken(encryptedTokens);
+  const decryptedTokens = decryptToken(encryptedTokens.token);
   return JSON.parse(decryptedTokens);
 }
 
