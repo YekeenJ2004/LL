@@ -10,6 +10,7 @@ const oAuth2Client = new google.auth.OAuth2(
 );
 
 const getDecryptedTokens = async() => {
+  console.log('starting to decrypt token')
   const encryptedTokens = await retrieveToken()
   console.log(encryptedTokens)
   const decryptedTokens = decryptToken(encryptedTokens.token);
