@@ -1,5 +1,5 @@
 import{google} from 'googleapis'
-import { decryptToken } from './lib/utils.js';
+import { decryptToken, retrieveToken } from './lib/utils.js';
 import fs from 'fs'
 import { Token } from './lib/models.js';
 
@@ -10,7 +10,7 @@ const oAuth2Client = new google.auth.OAuth2(
 );
 
 const getDecryptedTokens = async() => {
-  const encryptedTokens = await Token.findOne({name: 'token'})
+  const encryptedTokens = await retrieveToken
   const decryptedTokens = decryptToken(encryptedTokens.token);
   return JSON.parse(decryptedTokens);
 }

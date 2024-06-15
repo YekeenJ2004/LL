@@ -64,6 +64,20 @@ export const saveTokenToDB = async (encryptedToken) =>{
         console.log('could not store token to db', err)
     }
 }
+
+export const retrieveToken = async()=>{
+    try{
+        await connectToDB()
+        const token =  Token.findOne(
+            {
+                name: 'token'
+            }
+        )
+        return token.token
+    }catch(err){
+        console.log('could not store token to db', err)
+    }
+}
 // const transporter = nodemailer.createTransport({
 //     host: 'smtp.gmail.com',
 //     port: 465,
