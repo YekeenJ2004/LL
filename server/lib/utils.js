@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import dotenv from 'dotenv';
 import crypto from 'crypto'
+import { Token } from "./models.js";
 dotenv.config();
 
 const mongoUrl = process.env.MONGO
@@ -39,15 +40,30 @@ export function decryptToken(text) {
     let decrypted = decipher.update(encryptedText);
     decrypted = Buffer.concat([decrypted, decipher.final()]);
     return JSON.parse(decrypted.toString());
-  }
+}
   
-  export function encryptToken(token) {
+export function encryptToken(token) {
     const iv = crypto.randomBytes(Number(process.env.IV_LENGTH));
     const cipher = crypto.createCipheriv('aes-256-cbc', Buffer.from(process.env.ENCRYPTION_KEY, 'hex'), iv);
     let encrypted = cipher.update(JSON.stringify(token));
     encrypted = Buffer.concat([encrypted, cipher.final()]);
     return iv.toString('hex') + ':' + encrypted.toString('hex');
-  }
+}
+
+export const saveTokenToDB = async (encryptedToken) =>{
+    try{
+        await connectToDB()
+        const token = new Token(
+            {
+                token: encryptedToken,
+                name: 'token'
+            }
+        )
+        const savedToken = await token.save()
+    }catch(err){
+        console.log('could not store token to db', err)
+    }
+}
 // const transporter = nodemailer.createTransport({
 //     host: 'smtp.gmail.com',
 //     port: 465,

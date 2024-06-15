@@ -44,8 +44,14 @@ const paymentSchema = new mongoose.Schema({
     username: {type: String, required: true}
 })
 
+const tokenSchema = new mongoose.Schema({
+    token: {type: String, unique: true, required : true},
+    name: {type: String, unique: true, required : true}
+})
+
 //if commission exists, use the commission table, else create a new one named commision
 export const Commission  = mongoose.models.Commission || mongoose.model("Commission", commissionSchema)
 export const MerchantOffers =  mongoose.models.MerchantOffers || mongoose.model("MerchantOffers", merchantOffersSchema)
 export const User  = mongoose.models.User || mongoose.model("User", userSchema)
 export const Payment = mongoose.models.Payment || mongoose.model("Payment", paymentSchema)
+export const Token = mongoose.models.Token || mongoose.model("Token", tokenSchema)
