@@ -65,19 +65,20 @@ export const saveTokenToDB = async (encryptedToken) =>{
     }
 }
 
-export const retrieveToken = async () =>{
-    try{
-        await connectToDB()
-        const tokens =  Token.findOne(
-            {
-                name: 'token'
-            }
-        )
-        return (tokens.token)
-    }catch(err){
-        console.log('could not store token to db', err)
+export const retrieveToken = async () => {
+    try {
+        await connectToDB();
+        const tokenDoc = await Token.findOne({ name: 'token' });
+        if (tokenDoc) {
+            return tokenDoc.token;
+        } else {
+            throw new Error('Token not found');
+        }
+    } catch (err) {
+        console.error('Could not retrieve token from the database:', err);
+        throw err; // Rethrow the error to allow the calling function to handle it
     }
-}
+};
 // const transporter = nodemailer.createTransport({
 //     host: 'smtp.gmail.com',
 //     port: 465,
