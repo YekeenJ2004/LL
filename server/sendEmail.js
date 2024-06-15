@@ -41,8 +41,8 @@ function makeBody(to, from, subject, htmlMessage) {
     .replace(/=+$/, '');
 }
 
-export function sendEmail( to, subject, htmlMessage) {
-  const tokens = getDecryptedTokens();
+export async function sendEmail( to, subject, htmlMessage) {
+  const tokens = await getDecryptedTokens();
   oAuth2Client.setCredentials(tokens);
 
   const gmail = google.gmail({ version: 'v1', oAuth2Client });
