@@ -17,7 +17,7 @@ const getDecryptedTokens = async() => {
   return JSON.parse(decryptedTokens);
 }
 
-function makeBody(to, from, subject, htmlMessage) {
+async function makeBody(to, from, subject, htmlMessage) {
   const str = [
     `Content-Type: multipart/alternative; boundary="boundary"\n`,
     `MIME-Version: 1.0\n`,
@@ -46,7 +46,7 @@ export async function sendEmail( to, subject, htmlMessage) {
   oAuth2Client.setCredentials(tokens);
 
   const gmail = google.gmail({ version: 'v1', oAuth2Client });
-  const raw = makeBody(to, 'hello@linkloop.app', subject, htmlMessage);
+  const raw = await makeBody(to, 'hello@linkloop.app', subject, htmlMessage);
   gmail.users.messages.send(
     {
       userId: 'me',
