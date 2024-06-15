@@ -15,7 +15,7 @@ import { sendEmail } from "./sendEmail.js"
 import { applyHtmlContent } from "./lib/emailtemplates.js"
 import { google } from "googleapis"
 import fetch from "node-fetch"
-import { encryptToken } from "./lib/utils.js"
+import { encryptToken, saveTokenToDB } from "./lib/utils.js"
 import fs from 'fs'
 dotenv.config();
 
@@ -71,8 +71,9 @@ app.get('/oauth2callback', async (req, res) => {
         } else {
             oAuth2Client.setCredentials(tokens);
             const encryptedTokens = encryptToken(JSON.stringify(tokens));
-            fs.writeFileSync('token.enc', encryptedTokens);
-            console.log('Tokens encrypted and stored to token.enc');
+            await saveTokenToDB(encryptedTokens)
+            // fs.writeFileSync('token.enc', encryptedTokens);
+            console.log('Tokens encrypted and stored to db');
             res.send('Authorization successful! You can close this window.');      
         }
     }catch(error){

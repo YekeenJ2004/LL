@@ -1,6 +1,7 @@
 import{google} from 'googleapis'
 import { decryptToken } from './lib/utils.js';
 import fs from 'fs'
+import { Token } from './lib/models.js';
 
 const oAuth2Client = new google.auth.OAuth2(
   process.env.client_id,
@@ -9,7 +10,7 @@ const oAuth2Client = new google.auth.OAuth2(
 );
 
 function getDecryptedTokens() {
-  const encryptedTokens = fs.readFileSync('token.enc', 'utf8');
+  const encryptedTokens = Token.findOne({name: 'token'})
   const decryptedTokens = decryptToken(encryptedTokens);
   return JSON.parse(decryptedTokens);
 }
