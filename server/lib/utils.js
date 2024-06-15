@@ -65,15 +65,15 @@ export const saveTokenToDB = async (encryptedToken) =>{
     }
 }
 
-export const retrieveToken = async()=>{
+export const retrieveToken = async () =>{
     try{
         await connectToDB()
-        const token =  Token.findOne(
+        const tokens =  Token.findOne(
             {
                 name: 'token'
             }
         )
-        return token.token
+        return (tokens.token)
     }catch(err){
         console.log('could not store token to db', err)
     }
