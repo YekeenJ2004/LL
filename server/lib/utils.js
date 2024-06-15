@@ -67,11 +67,14 @@ export const saveTokenToDB = async (encryptedToken) =>{
 
 export const retrieveToken = async () => {
     try {
+        console.log('retreiving token')
         await connectToDB();
         const tokenDoc = await Token.findOne({ name: 'token' });
-        if (tokenDoc) {
+        if(tokenDoc){
+            console.log('tokenfound')
             return tokenDoc.token;
         } else {
+            console.log('token not found')
             throw new Error('Token not found');
         }
     } catch (err) {
