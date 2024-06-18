@@ -90,5 +90,6 @@ export async function sendEmail(to, subject, html) {
     console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
   } catch (error) {
     console.error('Error sending email:', error);
+    console.error('Error sending email:', error);
   }
 }
