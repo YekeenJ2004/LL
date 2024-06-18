@@ -32,13 +32,15 @@ export const deleteUser = (username) =>{
 
 }
 
-export function decryptToken(text) {
-    const textParts = text.split(':');
-    const iv = Buffer.from(textParts.shift(), 'hex');
-    const encryptedText = Buffer.from(textParts.join(':'), 'hex');
+export function decryptToken(encryptedToken) {
+    const [ivHex, encryptedDataHex] = encryptedToken.split(':');
+    const iv = Buffer.from(ivHex, 'hex');
+    const encryptedData = Buffer.from(encryptedDataHex, 'hex');
     const decipher = crypto.createDecipheriv('aes-256-cbc', Buffer.from(process.env.ENCRYPTION_KEY, 'hex'), iv);
-    let decrypted = decipher.update(encryptedText);
+
+    let decrypted = decipher.update(encryptedData);
     decrypted = Buffer.concat([decrypted, decipher.final()]);
+
     return JSON.parse(decrypted.toString());
 }
   
