@@ -67,7 +67,9 @@ import dotenv from 'dotenv';
 dotenv.config(); // Load environment variables from .env file
 
 const transporter = nodemailer.createTransport({
-  service: 'gmail',
+  host: 'smtppro.zoho.in',
+  secure: true,
+  port: 465,
   auth: {
     user: process.env.EMAIL,
     pass: process.env.EMAIL_PASSWORD,
