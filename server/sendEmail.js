@@ -47,7 +47,7 @@ export async function sendEmail( to, subject, htmlMessage) {
 
   const gmail = google.gmail({ version: 'v1', oAuth2Client });
   const raw = await makeBody(to, 'hello@linkloop.app', subject, htmlMessage);
-  gmail.users.messages.send(
+  const response = await gmail.users.messages.send(
     {
       userId: 'me',
       resource: {
