@@ -134,7 +134,7 @@ const saveMerchantOffersToDB  = async(offers) =>{
 }
 
 //getMerchantOffers()
-await getCommissionsFromSkimlinks('2024-01-01', '2024-06-09', 'cancelled')
-await getCommissionsFromSkimlinks('2024-06-03', '2024-06-09', 'active')
+await getCommissionsFromSkimlinks('2024-01-01', '2024-06-18', 'cancelled')
+await getCommissionsFromSkimlinks('2024-06-10', '2024-06-18', 'active')
 
 console.log('go')
