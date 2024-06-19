@@ -7,7 +7,7 @@ export const applyHtmlContent = (username, text)=>{
 
             <div class="content" style="padding: 20px;">
                 <h3>Hello, ${username}</h3>
-                <p>We are excited to share with you our latest updates and news. Please find the details below:</p>
+                <p>We are excited to share with you that we have recieved your application to use our services. If you are a good fit for us, you will be</p>
                 <!-- Your email content goes here -->
             </div>
 
