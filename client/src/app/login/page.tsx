@@ -98,6 +98,9 @@ export default function Login() {
               <button className={styles.button}>Apply now</button>
             </Link>
           </div>
+          <div>
+            <Link href = 'https://ll-client.vercel.app/resetpassword'>forgot password?</Link>
+          </div>
         </form>
       }
     </div>
