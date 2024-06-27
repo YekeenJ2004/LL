@@ -38,7 +38,7 @@ export default function Login() {
       setisValid(false)
       return 
     }
-    window.location.replace('https://ll-client.vercel.app/dashboard')
+    window.location.replace('https://linkloop.app/dashboard')
     login()
   }
   const onLogin = async (email : string , password : string) =>{
@@ -94,12 +94,12 @@ export default function Login() {
           </div>
           <div className={styles.buttombuttons}>
             <button type = "submit" className={styles.button} onClick={handleSubmit}>Login</button>
-            <Link href='https://ll-client.vercel.app/apply'>
+            <Link href='https://linkloop.app/apply'>
               <button className={styles.button}>Apply now</button>
             </Link>
           </div>
           <div>
-            <Link href = 'https://ll-client.vercel.app/resetpassword'>forgot password?</Link>
+            <Link href = 'https://linkloop.app/resetpassword'>forgot password?</Link>
           </div>
         </form>
       }
