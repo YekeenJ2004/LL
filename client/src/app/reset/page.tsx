@@ -8,7 +8,6 @@ const ResetPassword = () => {
         const temp = sessionStorage.getItem('token')
         return temp
     }
-    const token = sessionStorage.getItem('token')
     const [otp, setOtp] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [message, setMessage] = useState('');
