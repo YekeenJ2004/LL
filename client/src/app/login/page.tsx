@@ -98,9 +98,9 @@ export default function Login() {
               <button className={styles.button}>Apply now</button>
             </Link>
           </div>
-          <div>
+          {/* <div>
             <Link href = 'https://linkloop.app/resetpassword'>forgot password?</Link>
-          </div>
+          </div> */}
         </form>
       }
     </div>

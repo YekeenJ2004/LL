@@ -1,66 +1,51 @@
 "use client"
-import React from 'react'
-import styles from './resetpassword.module.css'
-import Link from 'next/link'
-import { useState } from 'react'
+import React, { useState, FormEvent } from 'react';
 
-export default function ResetPassword() {
+const ResetPassword: React.FC = () => {
+  const token = sessionStorage.getItem('token');
+  const [otp, setOtp] = useState<string>('');
+  const [newPassword, setNewPassword] = useState<string>('');
+  const [message, setMessage] = useState<string>('');
 
-    const [otp, setOtp] = useState('');
-    const [password, setPassword] = useState('');
-    const [isValid, setisValid] = useState(true);
-    const [isLoading, setIsLoading] = useState(true);
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    try {
+      const response = await fetch('/reset-password', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ token, otp, newPassword }),
+      });
 
-    const handleSubmit = async() =>{
-
+      const data = await response.json();
+      setMessage(data.message);
+    } catch (error) {
+      setMessage('Failed to reset password');
     }
-    return (
-        <div></div>
-        // <div>
-        //     <form className={styles.form}>
-        //     <div className={styles.title}>
-        //         Login
-        //     </div>
-        //     <div>
-        //         <div className={styles.field}>
-        //             <input className={styles.inputbox}
-        //                 type ='text'
-        //                 value = {otp}
-        //                 placeholder= 'E-mail'
-        //                 onChange={(e) => setOtp(e.target.value)}
-        //             >
-        //             </input>
-        //         </div>
-        //         <div className={styles.field}>
-        //             <input className={styles.inputbox}
-        //                 type='password'
-        //                 value = {password}
-        //                 placeholder= 'New password'
-        //                 onChange={(e) => setPassword(e.target.value)}
-        //             >
-        //             </input>
-        //         </div>
-        //         <div className={styles.field}>
-        //             <input className={styles.inputbox}
-        //                 type='password'
-        //                 value = {password}
-        //                 placeholder= 'Confirm new password'
-        //                 onChange={(e) => setPassword(e.target.value)}
-        //             >
-        //             </input>
-        //             {!isValid && <span className={styles.errormessage}>incorrect OTP email combo</span>}
-        //         </div>
-        //     </div>
-        //     <div className={styles.buttombuttons}>
-        //         <button type = "submit" className={styles.button} onClick={handleSubmit}>Login</button>
-        //         <Link href='https://linkloop.app/apply'>
-        //         <button className={styles.button}>Apply now</button>
-        //         </Link>
-        //     </div>
-        //     <div>
-        //         <Link href = 'https://linkloop.app/resetpassword'>forgot password?</Link>
-        //     </div>
-        //     </form>
-        // </div>
-    )
-}
+  };
+
+  return (
+    <div>
+      <h2>Reset Password</h2>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Enter OTP"
+          value={otp}
+          onChange={(e) => setOtp(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="Enter new password"
+          value={newPassword}
+          onChange={(e) => setNewPassword(e.target.value)}
+        />
+        <button type="submit">Reset Password</button>
+      </form>
+      {message && <p>{message}</p>}
+    </div>
+  );
+};
+
+export default ResetPassword;

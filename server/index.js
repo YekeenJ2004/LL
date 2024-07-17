@@ -13,10 +13,7 @@ import { changePaypal, checkifValidPaypal } from "./lib/changepaypal.js"
 import dotenv from 'dotenv';
 import { sendEmail } from "./sendEmail.js"
 import { applyHtmlContent } from "./lib/emailtemplates.js"
-import { google } from "googleapis"
-import fetch from "node-fetch"
-import { encryptToken, saveTokenToDB } from "./lib/utils.js"
-import fs from 'fs'
+import jwt from 'jsonwebtoken'
 dotenv.config();
 
 const MONGO = process.env.MONGO
@@ -24,63 +21,6 @@ const app = express()
 const port = 5000
 
 
-const SCOPES = ['https://www.googleapis.com/auth/gmail.send'];
-
-const oAuth2Client = new google.auth.OAuth2(
-    process.env.client_id,
-    process.env.client_secret,
-    process.env.redirect_uris
-);
-
-app.get('/oauth2login', (req, res) => {
-    const params = new URLSearchParams({
-        client_id: process.env.client_id,
-        redirect_uri: process.env.redirect_uris,
-        response_type: 'code',
-        scope: SCOPES.join(' '),
-        access_type: 'offline',
-        prompt: 'consent',
-    })
-    const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?${params.toString()}`;
-    res.redirect(authUrl);
-});
-
-app.get('/oauth2callback', async (req, res) => {
-    const { code } = req.query;
-  
-    const params = new URLSearchParams({
-      client_id: process.env.client_id,
-      client_secret: process.env.client_secret,
-      code,
-      redirect_uri: process.env.redirect_uris,
-      grant_type: 'authorization_code',
-    });
-  
-    try {
-        const response = await fetch('https://oauth2.googleapis.com/token', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: params.toString(),
-        });
-  
-        const tokens = await response.json();
-    
-        if (tokens.error) {
-            console.error('Error exchanging code for tokens:', tokens.error);
-            res.send('Error during authorization. Check the console for details.');
-        } else {
-            oAuth2Client.setCredentials(tokens);
-            const encryptedTokens = encryptToken(JSON.stringify(tokens));
-            await saveTokenToDB(encryptedTokens)
-            // fs.writeFileSync('token.enc', encryptedTokens);
-            console.log('Tokens encrypted and stored to db');
-            res.send('Authorization successful! You can close this window.');      
-        }
-    }catch(error){
-        console.error('Error retrieving access token:', error);
-        res.send('Error during authorization. Check the console for details.');
-    }
-});
 
 const findUserFromEmail = async (email) =>{
     const user = await User.findOne({email : email}) 
@@ -102,6 +42,44 @@ app.use(express.json());
 
 app.get('/', (req, res) => {
     res.send('Welcome to the backend!');
+});
+
+app.post('/request-reset', async (req, res) => {
+    const { email } = req.body;
+    const user = await checkIfEmailExists(email)
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+  
+    const otp = Math.floor(100000 + Math.random() * 900000).toString();
+    const token = jwt.sign({ email, otp }, process.env.JWT_SECRET, { expiresIn: '10m' });
+  
+    // Send OTP email
+    const sentemail =  sendEmail(email, 'Link Loop Reset', applyHtmlContent(username, 'passwordotp', {otp: otp}))
+    if(sentemail){
+        res.status(400).json({ message: 'Could not send otp' })
+    }
+    res.json({ message: 'OTP sent to email', token })
+});
+
+app.post('/reset-password', async (req, res) => {
+    const { token, otp, newPassword } = req.body;
+    try {
+        const decoded = jwt.verify(token, process.env.JWT_SECRET)
+        if (decoded.otp !== otp) {
+            return res.status(400).json({ message: 'Invalid OTP' })
+        }
+
+        const user = await checkIfEmailExists(email)
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' })
+        }
+  
+        user.password = bcrypt.hashSync(newPassword, 10)
+        res.json({ message: 'Password reset successfully' })
+    } catch (err) {
+        res.status(400).json({ message: 'Invalid or expired token' })
+    }
 });
 
 app.post('/api/changepaypal', async (req, res) => {
@@ -157,8 +135,7 @@ app.post('/api/apply', async (req, res) => {
     let saved = false 
     try{
         saved = await saveNewUserTODatabase(email, username, password, paypal, websiteLink)
-        await sendEmail(email, 'Application', applyHtmlContent(username, 'welcome'))
-        saved = true
+        saved = await sendEmail(email, 'Application', applyHtmlContent(username, 'application'))
     }catch(err){
         saved = false
         console.log(err)
