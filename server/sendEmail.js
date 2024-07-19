@@ -1,6 +1,5 @@
 import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
-import { TEMPORARY_REDIRECT_STATUS } from 'next/dist/shared/lib/constants';
 
 dotenv.config(); // Load environment variables from .env file
 
