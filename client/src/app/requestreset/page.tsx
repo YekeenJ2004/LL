@@ -10,9 +10,7 @@ const RequestReset: React.FC = () => {
     try {
       const response = await fetch('https://ll-server-yekeen-jimohs-projects.vercel.app/api/request-reset', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({ email }),
       });
 
