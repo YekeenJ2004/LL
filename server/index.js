@@ -62,7 +62,7 @@ app.post('/request-reset', async (req, res) => {
     res.json({ message: 'OTP sent to email', token })
 });
 
-app.post('/reset-password', async (req, res) => {
+app.post('/api/reset-password', async (req, res) => {
     const { token, otp, newPassword } = req.body;
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET)
