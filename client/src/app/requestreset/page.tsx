@@ -8,7 +8,7 @@ const RequestReset: React.FC = () => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
-      const response = await fetch('/request-reset', {
+      const response = await fetch('https://ll-server-yekeen-jimohs-projects.vercel.app/api/request-reset', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
