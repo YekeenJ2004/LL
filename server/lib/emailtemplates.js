@@ -31,7 +31,7 @@ export const applyHtmlContent = (username, templatename, requiredvariable = {})=
                 </div>
     
                 <div class="content" style="padding: 20px;">
-                    <h3>OTP : ${requiredvariable[otp]}</h3>
+                    <h3>OTP : ${requiredvariable['otp']}</h3>
                     <!-- Your email content goes here -->
                 </div>
     
