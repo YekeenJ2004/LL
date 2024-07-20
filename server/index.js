@@ -44,7 +44,7 @@ app.get('/', (req, res) => {
     res.send('Welcome to the backend!');
 });
 
-app.post('/request-reset', async (req, res) => {
+app.post('/api/request-reset', async (req, res) => {
     const { email } = req.body;
     const user = await checkIfEmailExists(email)
     if (!user) {
