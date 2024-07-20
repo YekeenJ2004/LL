@@ -52,11 +52,12 @@ app.post('/api/request-reset', async (req, res) => {
     }
   
     const otp =  Math.floor(100000 + Math.random() * 900000).toString();
+    console. log(otp)
     const token = jwt.sign({ email, otp }, process.env.JWT_SECRET, { expiresIn: '10m' });
-  
+    const dict = {otp:otp}
     // Send OTP email
-    const sentemail =  await sendEmail(email, 'Link Loop Reset', applyHtmlContent('', 'passwordotp', {otp: otp}))
-    if(sentemail){
+    const sentemail =  await sendEmail(email, 'Link Loop Reset', applyHtmlContent('', 'passwordotp', dict))
+    if(!sentemail){
         res.status(400).json({ message: 'Could not send otp' })
     }
     res.json({ message: 'OTP sent to email', token })
