@@ -55,7 +55,7 @@ app.post('/api/request-reset', async (req, res) => {
     const token = jwt.sign({ email, otp }, process.env.JWT_SECRET, { expiresIn: '10m' });
   
     // Send OTP email
-    const sentemail =  await sendEmail(email, 'Link Loop Reset', applyHtmlContent(username, 'passwordotp', {otp: otp}))
+    const sentemail =  await sendEmail(email, 'Link Loop Reset', applyHtmlContent('', 'passwordotp', {otp: otp}))
     if(sentemail){
         res.status(400).json({ message: 'Could not send otp' })
     }
