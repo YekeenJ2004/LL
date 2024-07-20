@@ -17,7 +17,7 @@ const RequestReset: React.FC = () => {
       const data = await response.json();
       setMessage(data.message);
       sessionStorage.setItem('token', data.token);
-      window.location.href = 'https://www.linkloop.app/resetpassword';
+      window.location.href = 'https://www.linkloop.app/reset';
     } catch (error) {
       setMessage('Failed to send OTP');
     }
