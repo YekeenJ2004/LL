@@ -32,7 +32,7 @@ const findUserFromEmail = async (email) =>{
 
 const corsOptions = {
     origin: '*', // Allow all origins
-    methods: 'GET', // Allowable methods
+    methods: ['GET', 'POST'], // Allowable methods
     preflightContinue: false,
     optionsSuccessStatus: 204
 };
@@ -51,7 +51,7 @@ app.post('/api/request-reset', async (req, res) => {
       return res.status(404).json({ message: 'User not found' });
     }
   
-    const otp = Math.floor(100000 + Math.random() * 900000).toString();
+    const otp =  Math.floor(100000 + Math.random() * 900000).toString();
     const token = jwt.sign({ email, otp }, process.env.JWT_SECRET, { expiresIn: '10m' });
   
     // Send OTP email
