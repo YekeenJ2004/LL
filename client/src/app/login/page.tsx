@@ -38,7 +38,7 @@ export default function Login() {
       setisValid(false)
       return 
     }
-    window.location.replace('https://linkloop.app/dashboard')
+    window.location.replace('https://ll-client.vercel.app/dashboard')
     login()
   }
   const onLogin = async (email : string , password : string) =>{
